@@ -13,13 +13,13 @@
 \usepackage{hyperref}
 \usepackage{adjustbox}
 \usepackage{nomencl}
-\usepackage[]{algorithm2e}
+
 
 
 % taille des marges
 \geometry{hmargin=2cm,vmargin=2.5cm}
 
-\title{Perfectly Matched Layer 1D}
+\title{Numerical stability of two-dimensionnal Perfectly Matched Layer}
 \author{Poulain Alexandre}
 \date{\today}
 
@@ -32,12 +32,7 @@
 \begin{abstract}
 %% Background (short)
 % What is known
-Absorbing boundary layers are widely employed to solve numerically wave propagation phenomena in infinite or unbounded domains. Several techniques exist to construct these boundaries such as Rayleigh damping in the absorbing layer or as presented in this report, perfectly matched layers (PML).  
-% What is not known
-Since the construction of these PMLs includes many aspects, this remains a challenge and several past researches lead for example in the case of the split-field PML for anisotropic problem to unstable solutions.  We attend in this report to present a stable one dimensional PML based on the weak form of the equations of elastodynamics. 
-%% Methods (long)
-% What was done
-First of all, the presentation of the construction of these PML will be detailed, including an extensive description of the equations governing this latter. The second part will be dedicated to the numerical results for test cases: a special attention will be dedicated to the reflection of the waves. We will shortly see that the PML is efficient to attenuate incident wave with less than $1$ percent of the incident wave reflected in some extreme cases where the length of the PML and the coefficients of the attenuation function are reduced to their minimum. The last part will describe the proof of the stability: the stability of the numerical scheme will be proved first and the theoretical stability will be reviewed after that since stability of one doesn't lead to stability of the other.    
+   
 %% Results
 
 
@@ -57,17 +52,8 @@ First of all, the presentation of the construction of these PML will be detailed
 \input{tex/nomenclature.tex}
 
 \newpage
-
-\input{tex/introduction}
-\newpage
-\input{tex/description.tex}
-\newpage
-\input{tex/test_case.tex}
-\newpage
 \input{tex/stability.tex}
 
-\newpage
-\input{tex/conclusion}
 
 
 \newpage
