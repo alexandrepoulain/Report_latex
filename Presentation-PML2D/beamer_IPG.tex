@@ -1,0 +1,51 @@
+% #########################################
+
+% This file provides a template to use beamer-theme
+% for Information Processing Group (IPG) presentations 
+
+% author: Stefano Rosati
+% email: stefano.rosati@epfl.ch
+% École Polytechnique Fédérale de Lausanne, EPFL
+% August 2012
+
+% #########################################
+
+\documentclass[roman]{beamer}
+\usepackage[french]{babel}
+\usepackage{textpos}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{geometry}
+
+\usepackage{xcolor}
+
+\usepackage{float} 
+
+
+%
+%
+\usetheme{IPG_style}
+%
+\author[.@epfl.ch]{Alexandre Poulain  \\
+\'Ecole Polytechnique F\'ed\'erale de Lausanne, Switzerland}
+% 
+\title[Perfectly Matched Layer]{Absorbing Boundary Layers in Time Domain Elastodynamics \\ \small{Stability Analysis}}
+%
+\makeatletter
+
+
+ \begin{document} 
+%
+\frame{\titlepage}
+\begin{frame}{Outline}
+\tableofcontents
+\end{frame}
+%
+
+%
+\input{tex/introduction.tex}
+\input{tex/description.tex}
+
+\end{document} 
