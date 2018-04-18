@@ -18,9 +18,8 @@
 \usepackage{graphicx}
 \usepackage{amsmath, amsfonts, amssymb}
 \usepackage{geometry}
-
 \usepackage{xcolor}
-
+\usepackage{adjustbox}
 \usepackage{float} 
 
 
@@ -28,13 +27,13 @@
 %
 \usetheme{IPG_style}
 %
-\author[.@epfl.ch]{Alexandre Poulain  \\
+\author[.@epfl.ch]{Alexandre Poulain \\
 \'Ecole Polytechnique F\'ed\'erale de Lausanne, Switzerland}
 % 
 \title[Perfectly Matched Layer]{Absorbing Boundary Layers in Time Domain Elastodynamics \\ \small{Stability Analysis}}
 %
 \makeatletter
-
+\def\doubleunderline#1{\underline{\underline{#1}}}
 
  \begin{document} 
 %
@@ -47,5 +46,6 @@
 %
 \input{tex/introduction.tex}
 \input{tex/description.tex}
+\input{tex/stability.tex}
 
 \end{document} 
