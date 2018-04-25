@@ -1,0 +1,62 @@
+\section{Introduction}
+\subsection{Absorbing boundaries}
+\begin{frame}{Absorbing boundaries}
+    \begin{itemize}[<+->]
+        \item Common practice to solve numerically wave propagation on unbounded domains.
+        \item Important topic for many research and engineering applications.
+        \item Simulation of earthquake ground motion, for soil-structure, geophysical, subsurface sensing, waveguides problems.
+        \pause
+        \vspace{0.7cm}
+        \item 2 kinds of method:
+        \begin{itemize}
+            \item \underline{Absorbing boundary conditions :} specific conditions at the model boundaries.
+        \pause
+            \item \underline{Absorbing boundary layers (ABL) :} layer surrounding the domain of interest.
+        \end{itemize}    
+    \end{itemize}
+\end{frame}
+
+\subsection{Perfectly matched layers}
+\begin{frame}{Perfectly matched layers}
+\pause
+    \begin{itemize}
+        \item \underline{split-field PML:} 
+        \begin{itemize}
+        \pause
+            \item Introduced by Bérenger in the context of electromagnetics.
+            \item Extended by Hastings et al to elastodynamics.
+            \item Use on complex-valued coordinate stretching.
+            \item Field splitting: partition of the variables into two components parallel and perpendicular to the truncation boundary.
+        \end{itemize}
+    \item \underline{unsplit-field PML:} 
+        \begin{itemize}
+        \pause
+            \item Introduced by Wang in the context of elastodynamics (CPML) $\rightarrow$ \textcolor{red}{Complexity} 
+            \pause
+            \item Basu and Chopra: unsplit-field PML for time-harmonic elastodynamics. $\rightarrow$ \textcolor{green}{finite-element implementation}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Stability of PML in the literature}
+\pause
+    \begin{itemize}
+        \item \underline{split-field PML:} 
+        \begin{itemize}
+        \pause
+        	\item Stability analysis using Slowness diagrams and wave fronts.
+        	\item Definitions of sufficiant and necessary conditions of stability [Becache 2006]. 
+            \item First order finite difference discretization: Prone to instability in anisotropic media.
+            \item Second order discretization: stable [Duru-2012]
+
+        \end{itemize}
+    \item \underline{unsplit-field PML:} 
+        \begin{itemize}
+        \pause
+            \item Stability proved for electromagnetics (Maxwell's equations) [Bécache 2004].
+            \pause
+            \item In the context of elastic wave propagation problems: no much publications.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+

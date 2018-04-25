@@ -1,0 +1,10 @@
+\select@language {french}
+\contentsline {section}{\numberline {1}Description}{4}{section.1}
+\contentsline {subsection}{\numberline {1.1}One dimensional perfectly matched layer}{4}{subsection.1.1}
+\contentsline {subsubsection}{\numberline {1.1.1}Elastic medium}{4}{subsubsection.1.1.1}
+\contentsline {subsubsection}{\numberline {1.1.2}Strong form of the PML in the frequency domain}{4}{subsubsection.1.1.2}
+\contentsline {subsubsection}{\numberline {1.1.3}Weak form of the PML and finite elements formulation}{6}{subsubsection.1.1.3}
+\contentsline {subsubsection}{\numberline {1.1.4}Temporal discretization}{7}{subsubsection.1.1.4}
+\contentsline {subsection}{\numberline {1.2}Two-dimensional perfectly matched layer}{8}{subsection.1.2}
+\contentsline {subsubsection}{\numberline {1.2.1}Strong form of PML}{8}{subsubsection.1.2.1}
+\contentsline {subsection}{\numberline {1.3}Weak form of 2D PML}{10}{subsection.1.3}

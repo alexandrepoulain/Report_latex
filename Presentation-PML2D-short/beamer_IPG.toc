@@ -1,0 +1,9 @@
+\beamer@endinputifotherversion {3.36pt}
+\select@language {french}
+\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{Absorbing boundaries}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{Perfectly matched layers}{11}{0}{1}
+\beamer@sectionintoc {2}{Numerical Stability Analysis}{21}{0}{2}
+\beamer@subsectionintoc {2}{1}{Method}{21}{0}{2}
+\beamer@subsectionintoc {2}{2}{1D stability}{25}{0}{2}
+\beamer@subsectionintoc {2}{3}{2D stability}{31}{0}{2}

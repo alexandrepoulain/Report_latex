@@ -1,0 +1,212 @@
+\begin{thebibliography}{10}
+
+\bibitem{Abarbanel1}
+Gottlieb~D. Abarbanel~S.
+\newblock A mathematical analysis of the pml method.
+\newblock {\em Journal of Computational Physics}, 134(2):357--363, 1997.
+
+\bibitem{Abarbanel2}
+Gottlieb~D. Abarbanel~S.
+\newblock On the construction and analysis of absorbing layers in cem.
+\newblock {\em Applied Numerical Mathematics}, 27(4):331--340, 1998.
+
+\bibitem{Abarbanel3}
+Hesthaven~J.S. Abarbanel~S., Gottlieb~D.
+\newblock Long time behavior of the perfectly matched layer equations in
+  computational electromagnetics.
+\newblock {\em Journal of Scientific Computing}, 17(1-4):405--422, 2002.
+
+\bibitem{Engquist}
+Engquist B. and Majda A.
+\newblock Absorbing boundary conditions for the numerical simulation of waves.
+\newblock {\em Mathematics of computation}, 31(139):629--651, 1977.
+
+\bibitem{Basu2003}
+Chopra A.~K. Basu~U.
+\newblock Perfectly matched layers for time-harmonic elastodynamics of
+  unbounded domains: theory and finite-element implementation.
+\newblock {\em Computational methods in applied mechanics and engineering},
+  192:1337--1375, 2003.
+
+\bibitem{Basu2004}
+Chopra A.~K. Basu~U.
+\newblock Perfectly matched layers for transient elastodynamics of unbounded
+  domains.
+\newblock {\em International Journal For Numerical Methods in Engineering},
+  59:1039--1074, 2004.
+
+\bibitem{Becache}
+Fauqueux~S. Bécache~E. and Joly .P.
+\newblock Stability of perfectly matched layers, group velocities and
+  anisotropic waves.
+\newblock {\em Journal of Computational Physics}, 188(2):399--443, 2003.
+
+\bibitem{Becache2}
+Tsogka~C. Bécache~E., Joly~P.
+\newblock Fictitious domains, mixed finite elements and perfectly matched
+  layers for 2-d elastic wave propagation.
+\newblock {\em Journal of Computational Acoustics}, 9(3):1175--1201, 2001.
+
+\bibitem{ChewLiu}
+Liu~Q.H. Chew~W.C.
+\newblock Perfectly matched layers for elastodynamics: A new absorbing boundary
+  condition.
+\newblock {\em Journal of Computational Acoustics}, 4(4):341--359, 1996.
+
+\bibitem{Chew}
+Weedon~W.H. Chew~W.C.
+\newblock A 3d perfectly matched medium from modified maxwell's equations with
+  stretched coordinates.
+\newblock {\em Microwave and Optical Technology Letters}, 7(13):599--604, 1994.
+
+\bibitem{Cohen}
+Fauqueux~S. Cohen~G.
+\newblock Mixed spectral finite elements for the linear elasticity system in
+  unbounded domains.
+\newblock {\em SIAM Journal on Scientific Computing}, 26(3):864--884, 2005.
+
+\bibitem{Collino}
+Tsogka~C. Collino~F.
+\newblock Application of the perfectly matched absorbing layer model to the
+  linear elastodynamic problem in anisotropic heterogeneous media.
+\newblock {\em Geophysics}, 66(1):294--307, 2001.
+
+\bibitem{Drossaert2}
+Giannopoulos~A. Drossaert~F.H.
+\newblock Complex frequency shifted convolution pml for fdtd modelling of
+  elastic waves.
+\newblock {\em Wave Motion}, 44(7--8):593--604, 2007.
+
+\bibitem{Drossaert1}
+Giannopoulos~A. Drossaert~F.H.
+\newblock A nonsplit complex frequency-shifted pml based on recursive
+  integration for fdtd modeling of elastic waves.
+\newblock {\em Geophysics}, 72(2):T9--T17, 2007.
+
+\bibitem{Festa}
+Vilotte J.-P. Festa~G.
+\newblock The newmark scheme as velocity–stress time-staggering: an efficient
+  pml implementation for spectral element simulations of elastodynamics.
+\newblock {\em Geophysical Journal International}, 161:789--812, 2005.
+
+\bibitem{Hu}
+Hu~F.Q.
+\newblock On absorbing boundary conditions for linearized euler equations by a
+  perfectly matched layer.
+\newblock {\em Journal of Computational Physics}, 129(1):201--219, 1996.
+
+\bibitem{Harari}
+Turkel~E. Harari~I., Slavutin~M.
+\newblock Analytical and numerical studies of a finite element pml for the
+  helmholtz equation.
+\newblock {\em Journal of Computational Acoustics}, 8(1):121--137, 2000.
+
+\bibitem{Hastings}
+Broschat~S.L. Hastings~F.D., Schneider~J.B.
+\newblock Application of the perfectly matched layer (pml) absorbing boundary
+  condition to elastic wave propagation.
+\newblock {\em Journal of the Acoustical Society of America},
+  14(100):3061--3069, 1996.
+
+\bibitem{Berenger}
+Bérenger J.-P.
+\newblock A perfectly matched layer for the absorption of electromagnetic
+  waves.
+\newblock {\em Journal of Computational Physics}, 114(2):185--200, 1994.
+
+\bibitem{Komatitsch}
+Tromp~J. Komatitsch~D.
+\newblock A perfectly matched layer absorbing boundary condition for the
+  second-order seismic wave equation.
+\newblock {\em Geophysical Journal International}, 154:146--153, 2003.
+
+\bibitem{Kucukcoban}
+Kallivokas~L.F. Kucukcoban~S.
+\newblock Mixed perfectly-matched-layers for direct transient analysis in 2d
+  elastic heterogeneous media.
+\newblock {\em Computational Methods in Applied Mechanics and Engineering.},
+  200:57--76, 2011.
+
+\bibitem{Meza}
+Papageorgiou~A.S. Meza-Fajardo~K.C.
+\newblock A nonconvolutional, split-field, perfectly matched layer for wave
+  propagation in isotropic and anisotropic elastic media: stability analysis.
+\newblock {\em Bulletin of the Seismological Society of America},
+  98(4):1811--1836, 2008.
+
+\bibitem{Bettess}
+Bettess P.
+\newblock Infinite elements.
+\newblock {\em International Journal for Numerical Methods in Engineering},
+  11(1):53--64, 1977.
+
+\bibitem{Liu}
+Liu Q.H.
+\newblock Perfectly matched layers for elastic waves in cylindrical
+  coordinates.
+\newblock {\em Journal of the Acoustical Society of America},
+  105(4):2075--2084, 1999.
+
+\bibitem{Qi}
+Geers~T.L. Qi~Q.
+\newblock Evaluation of the perfectly matched layer for computational
+  acoustics.
+\newblock {\em Journal of the Acoustical Society of America},
+  100(5):3061--3069, 1996.
+
+\bibitem{Ungless}
+Ungless RL.
+\newblock An infinite element method, masc thesis.
+\newblock {\em University of British Columbia}, 11(1):53--64, 1973.
+
+\bibitem{Roden}
+Gedney~S.D. Roden~J.A.
+\newblock An efficient fdtd implementation of the pml with cfs in general
+  media.
+\newblock {\em IEEE Antennas Propagat. Soc. Int. Symp.}, 3(2000):1265--1362,
+  2000.
+
+\bibitem{Semblat}
+Lenti~L. Semblat~JF and Gandomzadeh A.
+\newblock A simple multi-directional absorbing layer method to simulate elastic
+  wave propagation in unbounded domains.
+\newblock {\em International journal for numerical methods in engineering},
+  2010.
+
+\bibitem{Teixeira}
+Chew~W.C. Teixeira~F.L.
+\newblock On causality and dynamic stability of perfectly matched layers for
+  fdtd simulations.
+\newblock {\em IEEE Trans. Microwave Theory Tech.}, 47(6):775--785, 1999.
+
+\bibitem{Turkel}
+Yefet~A. Turkel~E.
+\newblock Absorbing pml boundary layers for wave-like equations.
+\newblock {\em Applied Numerical Mathematics}, 27(4):533--557, 1998.
+
+\bibitem{Basu2008}
+Basu U.
+\newblock Explicit finite element perfectly matched layer for transient
+  three-dimensional elastic waves.
+\newblock {\em International Journal For Numerical Methods in Engineering},
+  44:151--176, 2008.
+
+\bibitem{Wang}
+Tang~X. Wang~T.
+\newblock Finite-difference modeling of elastic wave propagation: a
+  nonsplitting perfectly matched layer approach.
+\newblock {\em Geophysics}, 68(5):1749--1755, 2003.
+
+\bibitem{Zeng}
+Liu~Q.H. Zeng~Y.Q., He~J.Q.
+\newblock The application of the perfectly matched layer in numerical modeling
+  of wave propagation in poroelastic media.
+\newblock {\em Geophysics}, 66(4):1258--1266, 2001.
+
+\bibitem{Zhang}
+Ballmann~J. Zhang Y.-G.
+\newblock Two techniques for the absorption of elastic waves using an
+  artificial transition layer.
+\newblock {\em Wave Motion}, 25(1):15--33, 1997.
+
+\end{thebibliography}

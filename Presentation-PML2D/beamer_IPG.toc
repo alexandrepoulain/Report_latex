@@ -1,7 +1,0 @@
-\beamer@endinputifotherversion {3.36pt}
-\select@language {french}
-\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
-\beamer@subsectionintoc {1}{1}{Absorbing boundaries}{3}{0}{1}
-\beamer@subsectionintoc {1}{2}{Perfectly matched layers}{12}{0}{1}
-\beamer@sectionintoc {2}{Formulation}{22}{0}{2}
-\beamer@subsectionintoc {2}{1}{Propagation of Elastic Waves in Solids}{22}{0}{2}

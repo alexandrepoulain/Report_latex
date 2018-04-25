@@ -1,0 +1,62 @@
+
+\pagestyle{plain}
+\setcounter{page}{1}
+\section*{Introduction}
+%% Absorbing boundary layers
+% Description and historic 
+
+
+The study of wave propagation in unbounded media is an growing topic of research and takes its applications in many engineering fields. 
+The solution of the elastodynamic problem using infinite domains is interesting for the simulation of earthquake ground motion or for soil-structure problems where the reflection of the wave at the boundaries needs to be eliminated. 
+To address this problem, a common practice is to add a layer surrounding the domain of interest in order to absorb the outgoing wave.   \\
+% PMLs detailed historic and overview of the methods
+Different methods have been developed to simulate wave propagation in unbounded media: the infinite elements methods, originally developed by Ungless \cite{Ungless} and Bettess \cite{Bettess}, which is close to the concept of finite elements but adds a new formulation including an infinite extent of the element region and shape functions. This method allows the approximation of the decaying laws governing the waves radiation process at infinity. The technique used here is to use finite element with their end nodes placed at infinity. The issues encountered with such technique is the same as the following method.  The appropriate absorbing boundary conditions is a method involving specific conditions at the model boundaries to approximate the radiation condition for the elastic waves \cite{Engquist}. The definition of these boundaries using this method leads to non stable scheme and spurious reflections cannot be avoided. These conditions are also not useful for practical calculations since they involve complex system of equations. The two first methods presented here presents the same drawbacks in terms of computation and analysis. However in order to solve these problems other methods have been developed leading to more efficient schemes.\\ 
+As presented in this report, another method is to define a new layer to the simulation: An absorbing layer. The Rayleigh Damping layers is based on a Rayleigh/Caughey damping formulation to express the damping matrix $[C]$ in the classic formulation of elastodynamic problems. This damping matrix in the Rayleigh formulation can be expressed as a combination of stiffness and mass matrix. This damping matrix for finite elements is often already available in existing Finite Element software which makes this method really practical to use. In \cite{Semblat}, the efficiency of the method is given and shows a satisfactory behaviour of the method in terms of efficiency for the one and the two dimensional case. \\
+Perfectly matched layers is another absorbing boundary layers method, that absorbs almost perfectly incident waves without any reflection from the truncation interface for all angles of incidence and frequencies. The wave entering into the PML decays with distance according to a user-defined decay function. The property of the non-reflection at the truncation interface is true in theory for the continuum case. Once a spatial discretization is used, numerical reflections are present but they can be attenuated using the parameters of the PML. These user-defined parameters can also increase the accuracy of the scheme used and even reduce the computational cost. Perfectly matched layers is a concept first introduced by Bérenger for the simulation of electromagnetic waves \cite{Berenger}. He used a split-field formulation and it arises from the use of complex-valued coordinate stretching in the electromagnetic wave equations \cite{Chew}. The field-splitting formulation permits to avoid convolutional operations in the time domain when the resulting forms are inverted back into the frequency domain and it is based on the partition of the variables into two components: parallel and perpendicular to the truncation boundary.  The drawback of this technique is that it alters the structure of the underlying differential equations and thus increases the number of unknowns. Another problem with Bérenger's split-field PML is that the problem is only weakly well-posed and thus prones to instability \cite{Abarbanel2}. This led to the development of strongly well-posed unsplit formulation \cite{Abarbanel1} but it turns out that these formulations also suffer from instability and need further manipulation of the equations to ensure it \cite{Abarbanel3}. However, the PML have been adapted for other linear wave equations such as the Helmholtz equation (scalar wave equation) \cite{Qi,Turkel,Harari}, linearised Euler equations \cite{Hu} or for the wave propagation in poroelastic materials \cite{Zeng}. An extensive discussion of these different methods is beyond the scope of this report since we focus on elastodynamic problems. \\
+% Spit-field elasto
+Indeed, the concept of PML was first adapted to elastodynamic wave propagation problems by Hastings et al \cite{Hastings}. This formulation was obtained by taking the split-field formulation of Bérenger and directly applying it to the P- and S-wave potentials. This formulation was obtained in term of displacement potentials and yields to a velocity-stress finite-difference method. The proof of the absorptive property of the PML was developed by Chew and Liu \cite{ChewLiu}: they developed in the same time a new split-field formulation for isotropic media using complex-valued coordinate stretching to obtain the equations governing the PML. Following the same idea Liu \cite{Liu} introduced a split-field PMLs for time-dependent elastic waves in cylindrical and spherical coordinates. Other split-field, time-domain PMLs for the velocity–stress formulation have been obtained and we refer to \cite{Zhang,Collino,Becache2} for the details of these methods and the presentation of a finite-differences-time-domain (FDTD) implementation of them. Another split-field formulation was introduced by Komatitsch and Tromp \cite{Komatitsch} where the stress term is eliminated and the displacement is split into four components. This results in a third-order in time semi-discrete forms for the four displacement fields or can be expressed by a second-order system coupled with one first-order equation for one of the displacement field. The main drawback of their method is its complexity but it is the first displacement only formulation for elastodynamics.\\
+% unsplit PML
+As we have seen before split-field PML suffer from instability since they are weakly well-posed. Wang \cite{Wang} introduced an unsplit formulation for finite-difference modeling of elastic wave propagation using convolution features (CPML). In contrast of the original formulation of CPML from the electromagnetic where they used complex-frequency-shifted stretching functions \cite{Teixeira, Roden}, Wang used standard stretching functions for its PML implementation.  In this report, we will develop an unsplit formulation using the finite element framework in the same spirit as Basu and Chopra. In \cite{Basu2003}, they introduced an unsplit-field PML for time-harmonic elastodynamics in 2D media. In \cite{Basu2004}, they developed the time-domain implementation of their PML and in \cite{Basu2008}, Basu extended its 2D formulation to 3D media using an explicit scheme. \\ 
+Based on a decomposition of the elastodynamics equations as a first-order system, Cohen and Fauqueux \cite{Cohen} derived a split-field formulation where the strain tensor is split and they had to introduce independent stress variables to account for the split strain tensor components. This method was implemented using a mixed finite element approach and spectral elements. A different formulation was obtained by Festa and Vilotte \cite{Festa} where they followed classic lines for reducing the second-order displacement-only elastodynamic problem to a first-order in time system. Instead of slitting the strain tensor, they used split-fields for both the velocity and stress components. In the framework of unsplit PML, Drossaert and Giannopoulos \cite{Drossaert1} described an alternative implementation based on recursive integration (RIPML). But this implementation presents less performance than the CPML for elastodynamics using the complex-frequency-shifted stretching functions\cite{Drossaert2}. Meza-Fajardo and Papageorgiou \cite{Meza} discussed a novel PML approach. In the standard approach of PML the coordinate-stretching and associated decay functions are used along the direction normal to the PML interface. Meza-Fajardo and Papageorgiou introduced them along all coordinate directions resulting in a split-field, non-convolutional M-PML which shows superior performance compared to standard PML.  \\
+All this literature survey of the different formulation of the PML can be summarised in the following table borrowed from \cite{Kucukcoban}:
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|c|c}
+        Implementation & split-field & unsplit-field \\
+        \hline
+        FD & Chew and Liu \cite{ChewLiu} & Wang and Tang \cite{Wang}\\
+         & Hastings et al. \cite{Hastings} & Drossaert and Giannopoulos  \cite{Drossaert1, Drossaert2}\\
+         &Liu\cite{Liu} & Komatitsch and Martin \cite{Komatitsch}\\
+         &Collino and Tsogka \cite{Collino} & \\
+         \hline
+        FE/SE &  Bécache et al. \cite{Becache2} & Basu and Chopra \cite{Basu2003}\\
+        & Komatitsch and Tromp \cite{Komatitsch}& Basu \cite{Basu2004}\\
+        & Cohen and Fauqueux  \cite{Cohen} & \\
+        & Festa and Vilotte \cite{Festa} & \\
+        & Meza-Fajardo and Papageorgiou \cite{Meza} & 
+    \end{tabular}
+    \caption{PML implementations in time-domain elastodynamics}
+    \label{tab:litterature}
+\end{table}
+The stability of the PML have been studied for mostly isotropic cases but Collino and Tsogka \cite{Collino} showed that the split-field standard PML is adequate in the case of anisotropic conditions. Also Bécache \cite{Becache} studied the stability of the PML and the effect of anisotropy: She showed that the standard PML is stable for isotropic cases and conditionally unstable for anisotropic applications. Bécache also proposed necessary conditions for stability in the form of inequalities choice of the stretching function.\\
+In the light of these previous works we will attend in this report to describe the formulations of a one and a two dimensional unsplit-field displacement-based PML. The implementations will be realised in the framework of finite elements. First of all we will describe in details the construction of the equations of the PML and also its formulation in the context of finite elements. After this theoretical description, the numerical results obtained on test cases involving a Ricker wave will be presented. In the last part, we will discuss the stability of the PML: Theoretical and numerical stability will be presented as well as the proof of the well-posedness of the problem.   
+
+
+
+
+
+
+
+% Pros and cons
+
+%% our work
+
+% Objectives of our work
+
+
+% Scientific importance of our work
+
+
+% Originality of our work
+
+

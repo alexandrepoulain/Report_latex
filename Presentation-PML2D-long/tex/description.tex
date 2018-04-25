@@ -1,0 +1,173 @@
+\section{Formulation}
+\subsection{Propagation of Elastic Waves in Solids}
+\begin{frame}{Equations}
+\begin{itemize}
+\item \underline{System of equations:}
+\begin{equation}
+\begin{cases}
+\sum_{j}\frac{\partial \sigma_{ij}}{\partial x_j} = \rho \frac{\partial^2 u_i}{\partial t^2} \\
+\sigma_{ij} = \sum_{k,l} C_{ijkl} \epsilon_{ij} \\
+\epsilon_{ij} = \frac{1}{2}\left(\frac{\partial u_i}{\partial x_j} + \frac{\partial u_j}{\partial x_i} \right)
+\end{cases}
+\end{equation}
+\item \underline{Complex coordinates: $x_i \rightarrow \tilde{x}_i: \mathbb{R} \rightarrow \mathbb{C}$}
+\begin{equation}
+\frac{\partial \tilde{x}_i}{\partial x_i} = \lambda_i(x_i) = 1+f_i^e(x_i)-i \frac{f^p_i(x_i)}{b k_s}
+\end{equation}
+$b$: characteristic length of the physical problem.\\
+$k_s = \frac{\omega}{c_s}$: wavenumber.\\
+$c_s$: shear wave velocity.
+ \end{itemize}
+\end{frame}
+\begin{frame}
+\begin{itemize}
+\item \underline{System of equations in frequency domain:}
+\begin{equation}
+\begin{cases}
+\sum_{j} \frac{1}{\lambda_j(x_j)}\frac{\partial \sigma_{ij}}{\partial x_j} = -\rho \omega^2 u_j \\
+\sigma_{ij} = \sum_{k,l} C_{ijkl} \epsilon_{ij} \\
+\epsilon_{ij} = \frac{1}{2}\left(\frac{1}{\lambda_j(x_j)} \frac{\partial u_i}{\partial x_j} + \frac{1}{\lambda_i(x_i)} \frac{\partial u_j}{\partial x_i} \right)
+\end{cases}
+\end{equation}
+
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Strong Form of PML}
+\begin{itemize}
+\item \underline{Inverse Fourier Transform :}
+\begin{equation}
+\begin{cases}
+div(\doubleunderline{\sigma}\tilde{F}^e + \doubleunderline{\Sigma}\tilde{F}^p) = \rho f_m \underline{\ddot{u}} + \rho \frac{c_s}{b} f_c \underline{\dot{u}} + \frac{\mu}{b^2}f_k \underline{u}, & \text{In } \Omega_{PML} \times J\\
+\doubleunderline{\sigma} =  C : \doubleunderline{\epsilon} , & \text{In } \Omega_{PML} \times J\\
+F^{eT} \doubleunderline{\dot{\epsilon}}F^e + F^{pT}\underline{\epsilon}F^e + F^{eT}\doubleunderline{\epsilon}F^p + F^{pT} \doubleunderline{E} F^p = ...\\
+\frac{1}{2}(\nabla \underline{\dot{u}}^T F^e + F^{eT} \nabla \underline{\dot{u}})+\frac{1}{2}(\nabla \underline{u}^T F^p + F^{pT} \nabla \underline{u}), & \text{In } \Omega_{PML} \times J\\
+\end{cases}
+\end{equation}
+With homogeneous initial conditions:
+\begin{equation}
+\begin{cases}
+\underline{u}=0,& \text{on } \Gamma_{PML}^D\\
+(\doubleunderline{\sigma}\tilde{F}^e + \doubleunderline{\Sigma}\tilde{F}^p).n , & \text{on } \Gamma_{PML}^N 
+\end{cases}
+\label{eq:main}
+\end{equation}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Descriptions of the components}
+\begin{equation*}
+F^e = \begin{bmatrix}
+1+f^e_1(x1)&0\\0&1+f^e_2(x2)
+\end{bmatrix}, F^p = \begin{bmatrix}
+\frac{c_s}{b}f^p_1(x1)&0\\0&\frac{c_s}{b}f^p_2(x2) 
+\end{bmatrix} 
+\end{equation*}
+\begin{equation*}
+\tilde{F}^e = \begin{bmatrix}
+1+f^e_2(x2)&0\\0&1+f^e_1(x1)
+\end{bmatrix}, \tilde{F}^p = \begin{bmatrix}
+\frac{c_s}{b}f^p_2(x2)&0\\0&\frac{c_s}{b}f^p_1(x1) 
+\end{bmatrix} 
+\end{equation*}
+\begin{equation*}
+\begin{cases}
+f_m = (1+f^e_1(x1))(1+f^e_2(x2))\\
+f_c = (1+f^e_1(x1))f^p_2(x2) + (1+f^e_2(x2))f^p_1(x1)\\
+f_k = f^p_1(x_1)f^p_2(x_2)
+\end{cases}
+\end{equation*}
+Integral of stess and strain:
+\begin{equation*}
+\doubleunderline{\Sigma} = \int^t_0 \doubleunderline{\sigma} dt, \doubleunderline{E} = \int^t_0 \doubleunderline{\epsilon} dt
+\end{equation*}
+Attenuation function:
+\begin{equation*}
+f^\alpha_i = a_\alpha\left(\frac{x_i - x_0}{L_p} \right)^n
+\end{equation*}
+\end{frame}
+
+\begin{frame}{Discrete form of PML}
+After:
+\begin{itemize}
+\item Multiplying \ref{eq:main} test functions $v$ belonging to an appropriate space.
+\item Integrating over the computational domain.
+\item Discretization in time and space.
+\end{itemize}
+\begin{equation}
+M \ddot{U}_{n+1} + (C+\tilde{C})\dot{U}_{n+1} + (K+\tilde{K})U_{n+1} + P(\epsilon_n, E_n, \Sigma_n) = F_{ext}
+\end{equation}
+with
+\begin{columns}[T] % align columns
+\begin{column}{.48\textwidth}
+\begin{equation*}
+m^{e} = \int_{\Omega_e} \rho f_m N_I N_J d\Omega_e I_d
+\end{equation*}
+\begin{equation*}
+ c^{e} = \int_{\Omega_e} \rho f_c \frac{c_s}{b} N_I N_J d\Omega_e I_d
+\end{equation*}
+\begin{equation*}
+  k^{e} = \int_{\Omega_e} \frac{\mu}{b^2} f_k N_I N_J d\Omega_e I_d 
+\end{equation*}
+\end{column}%
+\hfill%
+\begin{column}{.48\textwidth}
+\begin{equation*}
+\tilde{c}^{e} = \frac{1}{dt} \int_{\Omega_e} \tilde{B}^T D B^\epsilon d\Omega_e
+\end{equation*}
+\begin{equation*}
+\tilde{k}^{e} = \frac{1}{dt} \int_{\Omega_e} \tilde{B}^T D B^Q d\Omega_e
+\end{equation*}
+
+\end{column}%
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Internal Forces}
+The last point is the Internal Forces term $P(\epsilon_n, E_n, \Sigma_n)$
+\begin{equation}
+P^e(\epsilon_n, E_n, \Sigma_n) = \int_{\Omega_e} \tilde{B}^T \frac{D}{dt} \left[\frac{1}{dt}\hat{F}^{\epsilon} \hat{\epsilon} - \hat{F}^Q \hat{E}_n \right] + \tilde{B}^p \hat{\Sigma}_n d\Omega_e
+\end{equation}
+with
+\begin{equation*}
+\tilde{B}^e_I = \begin{bmatrix}
+\tilde{N}^e_{I1}&0\\0&\tilde{N}^e_{I2}\\\tilde{N}^e_{I2}&\tilde{N}^e_{I1}
+\end{bmatrix}, \tilde{B}^p_I = \begin{bmatrix}
+\tilde{N}^p_{I1}&0\\0&\tilde{N}^p_{I2}\\\tilde{N}^p_{I2}&\tilde{N}^p_{I1}
+\end{bmatrix}
+\end{equation*}
+\begin{equation*}
+\tilde{N}^e_{Ii} = \tilde{F}^e_{ji}N_{I,j}, \tilde{N}^p_{Ii} = \tilde{F}^p_{ji}N_{I,j}
+\end{equation*}
+And
+\begin{equation*}
+\tilde{B}^T = \tilde{B}^{eT}+dt \tilde{B}^{pT}
+\end{equation*}
+\begin{equation*}
+B^\epsilon_I = \begin{bmatrix}
+F^\epsilon_{11}N^I_{I1}&F^\epsilon_{21}N^I_{I1}\\
+F^\epsilon_{12}N^I_{I2}&F^\epsilon_{22}N^I_{I2}\\
+F^\epsilon_{11}N^I_{I2}+F^\epsilon_{12}N^I_{I1}& F^\epsilon_{21}N^I_{I2}+F^\epsilon_{22}N^I_{I1}
+\end{bmatrix}
+\end{equation*}
+\end{frame}
+\begin{frame}{following}
+with
+\begin{equation*}
+F^I = \left[ F^p+\frac{F^e}{dt} \right]^{-1}, F^\epsilon = F^eF^I, F^Q=F^pF^I
+\end{equation*}
+and 
+\begin{equation*}
+N^I_{Ii} = F^I_{ij}N_{I,j}
+\end{equation*}
+and
+\begin{equation*}
+\hat{F}^\epsilon_I = \begin{bmatrix}
+(F^\epsilon_{11})^2&(F^\epsilon_{21})^2& F^\epsilon_{11}F^\epsilon_{21}\\
+(F^\epsilon_{12})^2&(F^\epsilon_{22})^2&F^\epsilon_{12}F^\epsilon_{22}\\
+2F^\epsilon_{11}F^\epsilon_{12}&2 F^\epsilon_{21}F^\epsilon_{22}& F^\epsilon_{11}F^\epsilon_{22}+F^\epsilon_{12}F^\epsilon_{21}
+\end{bmatrix}
+\end{equation*}
+\end{frame}
