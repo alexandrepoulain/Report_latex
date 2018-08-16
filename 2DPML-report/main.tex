@@ -39,9 +39,9 @@ Absorbing boundary layers is a common method to solve numerically wave propagati
 Due to the complexity of the formulation of these PMLs, their construction and use remain a challenge. A large number of formulations and implementations have been proposed through the years to tackle some problems such as instability and performance.  
 %% Methods (long)
 % What was done
-We attend in this report to present the formulation of unsplit field two-dimensional perfectly matched layer based on the weak form of the equations of elastodynamics. 
+We attend in this report to present the formulation of a stable unsplit field two-dimensional perfectly matched layer based on the weak form of the equations of elastodynamics. 
 
-\noindent First of all, the presentation of the construction of the PML will be detailed, including an extensive description of the governing equations. The second part will be dedicated to the numerical results for a simple test case and a special attention will be dedicated to the reflection of the waves. We will shortly see that the PML is efficient to attenuate incident wave with less than $1$ percent of the incident wave reflected in some extreme cases where the length of the PML and the coefficients of the attenuation function are reduced to their minimum. The last part will describe the proof of the numerical stability of the integration method associated with the PML. It will be proved that the scheme imployed is stable and the theoretical stability will be reviewed after that since stability of one doesn't lead to stability of the other.    
+\noindent First of all, the presentation of the construction of the PML will be detailed, including an extensive description of the governing equations. Using this description, we will explain the proof of the stability of the numerical scheme: the method employed will be described and the results will be analyzed. This stability analysis will be followed by the implementation of the scheme in Akantu: an open-source finite-element software developed at the Computational Solid Mechanics Laboratory of the EPFL. The results on two test cases will be reviewed in the second part and a special attention will be dedicated to the reflection of the waves since this parameter represents the efficiency of the PML. We will shortly see that the scheme is efficient to attenuate incident waves with less than $1$ percent of the incident wave reflected in some extreme cases where the length of the PML and the coefficients of the attenuation functions are reduced to their minimum.   
 %% Results
 
 
@@ -65,6 +65,8 @@ We attend in this report to present the formulation of unsplit field two-dimensi
 \input{tex/introduction}
 \newpage
 \input{tex/description.tex}
+\newpage
+\input{tex/stability.tex}
 
 \newpage
 \input{tex/conclusion}

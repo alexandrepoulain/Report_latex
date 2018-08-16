@@ -1,0 +1,253 @@
+\section{Stability of the numerical method}
+After evaluating numerically the overall efficiency of the method for the one dimensional case, the theoretical and numerical stability will be studied. In fact, the theoretical stability does not lead to the stability of the numerical scheme. Therefore, both stabilities will be studied separately.
+
+In order to prove the stability of the temporal scheme, we can recall the following result concerning integration methods \cite{Geradin}: An integration scheme is said to be stable if there exists an integration step $h_0 > 0$ so that for any $h \in [0, h_0]$, a finite variation of the state vector at time $t^n$ induces only a non-increasing variation of the state vector $q^{n+1}$ calculated at a subsequent instant $t^{n+1}$.\\
+In our case we will study the stability of the scheme with the temporal discretization presented in part \ref{part:describ}. We will focus our attention of the stability of the temporal scheme applied on only one element. We can prove the stability on one element the result extends to the other element \cite{Belytschko}. 
+\subsection{Construction of the Amplification Matrix}
+\subsubsection{One-dimensional PML}
+First of all we need to go back to the equations of motion and define the state vector: $Q^n = [\dot{u}^n, u^n, H^n]^T$.
+The objective is to define the matrices $A$ and $B$ such that:
+\begin{equation}
+    A(h) Q^{n+1} + B(h) Q^{n} = 0
+    \label{eq:matrix_form}
+\end{equation}
+which is in fact the matrix form of the equations of motion. Since each component of the state vector have the size $2 \times 1$, the matrices $A$ and $B$ are $6 \times 6$. This formulation comes from the fact that the we used have only one bar element composed of two points.    
+Let us first recall the equation of motion at time $t^n$ and $t^{n+1}$:
+\begin{equation}
+    M  \Ddot{u}^n = -C \Dot{u}^n - K u^n +p_{int}^n 
+\end{equation}
+\begin{equation}
+    M \Ddot{u}^{n+1} = -C \Dot{u}^{n+1} - K u^{n+1} +p_{int}^{n+1} 
+\end{equation}
+Using the recurrence relationship described in the algorithm \ref{algo} from the Newmark scheme, we obtain:
+\begin{equation}
+    M \dot{u}^{n+1} = M\Dot{u}^{n} + h(1-\gamma)\left[ -C \Dot{u}^n - K u^n +p_{int}^n   \right] + \gamma h \left[ -C \Dot{u}^{n+1} - K u^{n+1} +p_{int}^{n+1} \right]
+    \label{eq:rec1}
+\end{equation}
+
+\begin{equation}
+    M u^{n+1} = M u^{n} + h M \dot{u}^n + h^2(\frac{1}{2}-\beta)\left[ -C \Dot{u}^n - K u^n +p_{int}^n   \right] + \beta h^2 \left[ -C \Dot{u}^{n+1} - K u^{n+1} +p_{int}^{n+1} \right]
+    \label{eq:rec2}
+\end{equation}
+With $\beta$ and $\gamma$ the parameters of the Newmark scheme. We also have a recurrence relation for $H^{n+1}$. 
+\begin{equation}
+    H^{n+1} = H^n + h \epsilon^{n+1}
+    \label{eq:rec3}
+\end{equation}
+With $\epsilon^{n+1}$ the strain at time $t^{n+1}$ which can be expressed in function of $u^{n+1}$ and $H^n$. The following formulation is element wise, since we consider the stability on only one element this formulation suffices:
+\begin{equation}
+    \epsilon^{{n+1}^e} = \frac{[B]\{u^{{n+1}^e}\} - \frac{c_s}{L_p} f^p_x H^n}{\alpha}
+    \label{eq:eps}
+\end{equation}
+with $\alpha = (1+f^e_x)+\frac{c_s}{L_p} f^p_x $.\\ 
+Using the equations \ref{eq:rec1}, \ref{eq:rec2} and \ref{eq:rec3}, we seek the definition of the matrix form \ref{eq:matrix_form}. We will define the matrices per blocs of size $2 \times 2$. In the following development the mass $M$, damping $C$ and stiffness $K$ matrices are using the formulas \ref{eq:me}, \ref{eq:ce} and \ref{eq:Ke} for one element.  \\
+First of all, let us multiply by the left \ref{eq:rec1} and \ref{eq:rec2} by $M^{-1}$ and put all the terms to the left side:
+
+\begin{multline}
+    \dot{u}^{n+1}\left[I + \gamma h M^{-1}C\right] + u^{n+1}\left[\gamma h M^{-1}K \right] -\gamma h M^{-1} p_{int}^{n+1}  
+    + \dot{u}^n\left[-I + h(1-\gamma)M^{-1}C   \right] \\+ u^n\left[ h(1-\gamma) M^{-1}K \right] - h(1-\gamma)M^{-1} p_{int}^n = 0
+\end{multline}
+\begin{multline}
+    \dot{u}^{n+1}\left[\beta h^2 M^{-1} C \right] +  u^{n+1}\left[I+\beta h^2 M^{-1} K  \right] - \beta h^2 M^{-1} p_{int}^{n+1} + \dot{u}^n \left[ -h I + h^2(\frac{1}{2}-\beta) M^{-1} C \right] \\
+    + u^n\left[-I + h^2(\frac{1}{2}-\beta) M^{-1} K \right] - h^2(\frac{1}{2}-\beta) M^{-1}p^n_{int}=0
+\end{multline}
+The only problem remaining before constructing the matrices $A(h)$ and $B(h)$ is how to handle the term of the internal forces $p_{int}$.
+Let us recall its expression first:
+\begin{equation}
+    p_{int}^n = \int^{1}_{-1}[B]^T\frac{c_s}{L_p}\frac{f^p(\xi)}{\alpha(\xi)} H^n S  \frac{L_e}{2} d\xi
+\end{equation}
+Since we assumed that $f^p$ and $f^e$ are constant and using the quadrature to evaluate the integral with two Gauss points with weights $w=1$  we obtain
+
+\begin{equation}
+    p_{int}^n = \frac{c_s}{L_p} E S \begin{bmatrix} \frac{2}{L_e} \\ \frac{-2}{L_e} \end{bmatrix} \begin{bmatrix} 1 \times \frac{H_{n,k=1} f^p_{k=1}}{\alpha_{k=1}}&  1 \times \frac{H_{n,k=2} f^p_{k=2}}{\alpha_{k=2}}  \\ \end{bmatrix} = \frac{c_s}{L_p} E S \frac{f^p}{\alpha} \begin{bmatrix}
+        1 &1\\
+        -1 & -1
+    \end{bmatrix} \begin{bmatrix}H_{n,k=1} \\ H_{n,k=2}\end{bmatrix}
+\end{equation} 
+where $k=1$ corresponds to the first Gauss point and $k=2$ to the second. We also have:
+\begin{equation}
+    A_p = \frac{c_s E S}{L_p}\frac{f^p_x}{\alpha} \begin{bmatrix}
+        1 &1\\
+        -1 & -1
+    \end{bmatrix}
+\end{equation}
+For the last row of the matrices we need to focus on the equation:
+\begin{equation}
+    H^{n+1} = H^n + h \epsilon^{n+1}
+\end{equation}
+with $\epsilon^{n+1}$ given by the equation \ref{eq:eps} such that we obtain:
+\begin{equation}
+    H^{n+1}+H^n\left[-I + h \frac{c_s}{L_p} \frac{f^p_x}{\alpha} \right] - \frac{h}{\alpha} \left[\overline{B} \right]u^{n+1} 
+\end{equation}
+\begin{equation}
+    A(h) = \begin{bmatrix} I+\gamma h M^{-1} C & \gamma h M^{-1} K & -\gamma h M^{-1} A_p \\
+    \beta h^2 M^{-1} C & I+\beta h^2 M^{-1} K & -\beta h^2 M^{-1} A_p\\
+    0 & -\frac{h}{\alpha} \overline{B} & I
+    \end{bmatrix}
+    \label{eq:A(h)}
+\end{equation}
+where 
+\begin{equation}
+    \overline{B} = \frac{1}{L_e} \begin{bmatrix}
+        -1 & 1\\
+        -1 & 1
+    \end{bmatrix}
+\end{equation}
+We expressed in \ref{eq:A(h)} all the terms depending on time $t^{n+1}$, let us now express the remaining terms depending on time $t^n$:
+\begin{equation}
+    B(h) = \begin{bmatrix} -I+(1-\gamma) h M^{-1} C & (1-\gamma) h M^{-1} K & -(1-\gamma) h M^{-1} A_p \\
+    -h I + (\frac{1}{2}-\beta) h^2 M^{-1} C & -I+(\frac{1}{2}-\beta) h^2 M^{-1} K & -(\frac{1}{2}-\beta) h^2 M^{-1} A_p\\
+    0 & 0 & -I+\frac{c_s}{L_p}\frac{f^p_x}{\alpha} I
+    \end{bmatrix}
+    \label{eq:B(h)}
+\end{equation}
+Using the equation \ref{eq:A(h)} and \ref{eq:B(h)}, we can define the amplification matrix associated with the integration operator $H(h) = A(h)^{-1} B(h)$.\\
+
+\subsubsection{Two-dimensional PML}
+First of all, the state vectors at time $t_n$ and $t_{n+1}$ are defined by
+\begin{equation}
+X_n = \begin{pmatrix}
+\dot{u}_n \\
+u_n \\
+\hat{\epsilon}_{n-1} \\
+\hat{E}_{n-1} \\
+\hat{\Sigma}_{n-1}
+\end{pmatrix}, \hspace{1cm}
+X_{n+1}= \begin{pmatrix}
+\dot{u}_{n+1} \\
+u_{n+1} \\
+\hat{\epsilon}_{n} \\
+\hat{E}_{n} \\
+\hat{\Sigma}_{n}
+\end{pmatrix}
+\end{equation}  
+Since the considered element is a four-noded linear element, $\dot{u}_n$ and $u_n$ have a shape of $8 \times 1$. For each node we have a component along the x- and y-direction: for example for node $1$ we have $u_{n,1} = \begin{pmatrix}
+u_{n,1,x}\\ u_{n,1,y}
+\end{pmatrix} $. We expressed the strain, its integral and the integral of the stress in Voigt notation. For each point of quadrature, these elements will have $3$ components. Therefore in the state vector $\hat{\epsilon}_{n}$, $\hat{E}_{n}$ and $\hat{\Sigma}_{n}$ will have a size of $(ng*3) \times 1$ with $ng$ corresponding to the order of the quadrature.   
+\par Let us recall the equation of motion in the PML at time $t_n$:
+\begin{equation}
+M \ddot{u}_n +\left(C+\tilde{C}\right)\dot{u}_n 
++\left(K+\tilde{K}\right)u_n + P(\epsilon_{n-1},E_{n-1},\Sigma_{n-1}) = F_{ext}
+\label{eq:motion-pml-tn}
+\end{equation}
+which gives us the expresion for $M\ddot{u}_n$:
+\begin{equation}
+M \ddot{u}_n = F_{ext} -\left(C+\tilde{C}\right)\dot{u}_n 
+-\left(K+\tilde{K}\right)u_n - P(\epsilon_{n-1},E_{n-1},\Sigma_{n-1})
+\label{eq:motion-pml-tn-reorganized}
+\end{equation}
+And at time $t_{n+1}$:
+\begin{equation}
+M \ddot{u}_{n+1} = F_{ext} -\left(C+\tilde{C}\right)\dot{u}_{n+1} 
+-\left(K+\tilde{K}\right)u_{n+1} - P(\epsilon_{n},E_{n},\Sigma_{n})
+\label{eq:motion-pml-tn+1-reorganized}
+\end{equation}
+Let us recall the Newmark's relationships:
+\begin{equation}
+	\begin{cases}
+		u_{n+1} = u_n + \Delta t \dot{u}_n + \Delta t^2 \left(\frac{1}{2}-\beta\right)\ddot{u}_n + \beta \Delta t^2 \ddot{u}_{n+1} \\
+		\dot{u}_{n+1} = \dot{u}_n + \Delta t (1-\gamma) \ddot{u}_n + \gamma \Delta t \ddot{u}_{n+1}
+	\end{cases}
+	\label{eq:Newmark-relations}
+\end{equation}
+Now multiply the equations \ref{eq:Newmark-relations} by the mass matrix $M$ and use the equations \ref{eq:motion-pml-tn-reorganized} and \ref{eq:motion-pml-tn+1-reorganized} to obtain:
+\begin{align}
+		M u_{n+1} = M u_n + \Delta t M \dot{u}_n + &  \Delta t^2 \left(\frac{1}{2}-\beta\right)\left[ F_{ext} -\left(C+\tilde{C}\right)\dot{u}_n -\left(K+\tilde{K}\right)u_n - P(\epsilon_{n-1},E_{n-1},\Sigma_{n-1}) \right]  \notag\\ + &  \beta \Delta t^2 \left[ F_{ext} -\left(C+\tilde{C}\right)\dot{u}_{n+1} 
+-\left(K+\tilde{K}\right)u_{n+1} - P(\epsilon_{n},E_{n},\Sigma_{n}) \right] 
+	\label{eq:main-relations1}
+\end{align}
+\begin{align}
+		M \dot{u}_{n+1} = M \dot{u}_n +  &\Delta t (1-\gamma) \left[ F_{ext} -\left(C+\tilde{C}\right)\dot{u}_n 
+-\left(K+\tilde{K}\right)u_n - P(\epsilon_{n-1},E_{n-1},\Sigma_{n-1}) \right] \notag\\ + & \gamma \Delta t \left[ F_{ext} -\left(C+\tilde{C}\right)\dot{u}_{n+1} 
+-\left(K+\tilde{K}\right)u_{n+1} - P(\epsilon_{n},E_{n},\Sigma_{n}) \right] 
+	\label{eq:main-relations2}
+\end{align}
+In the above equations, the functional $P$ depends on the strain, its integral and the integral of the stress of the previous time step and take the following expression:
+\begin{equation}
+P(\hat{\epsilon_n},\hat{E_n},\hat{\Sigma_n}) = \int_{\Omega_e} \tilde{B}^T \frac{D}{\Delta t}\left[\frac{1}{\Delta t} \hat{F}^\epsilon \hat{\epsilon}_n - \hat{F}^Q \hat{E}_n  \right] + \tilde{B}^{p T} \hat{\Sigma}_n d\Omega_e
+\label{eq:P-exp}
+\end{equation}
+Using a gaussian quadrature to evaluate numerically the integral:
+\begin{equation}
+P(\hat{\epsilon_n},\hat{E_n},\hat{\Sigma_n}) = \sum_{i=1}^{ng} \sum_{j=1}^{ng} \omega_i \omega_j \left[\tilde{B}^T(\eta_i,\xi_j) \frac{D}{\Delta t} \left[ \hat{F}(\eta_i,\xi_j)\hat{\epsilon}_n(\eta_i,\xi_j) - \hat{F}^Q(\eta_i,\xi_j) \hat{E}_n(\eta_i,\xi_j) \right]  + \tilde{B}^{pT}(\eta_i,\xi_j) \hat{\Sigma}_n(\eta_i,\xi_j)\right]
+\label{eq:app-P}
+\end{equation}  
+The objective is to find a matrix formulation of \ref{eq:app-P}and in order to do so let us decompose the problem. First of all, we seek a matrix to be multiplied with $\hat{\epsilon}_n$ contained in the state vector $X_{n+1}$. We recall that the size of this component is $(3*ng)\times 1$. 
+Let us define the following matrix $S$ with 
+\begin{equation}
+S_{i,j}=\omega_i \omega_j \left[ \tilde{B}^T(\eta_i,\xi_j) \frac{D}{\Delta t^2} \hat{F}^\epsilon(\eta_i,\xi_j)\right]
+\label{eq:S}
+\end{equation}
+Since $\tilde{B}$ has a size of $3\times (2*ng^2)$, $D$: $3 \times 3$ and $\hat{F}^\epsilon$: $3\times (3*ng^2)$, $S$ has a shape of $(2*ng^2) \times (3*ng^2)$. Thus the matrix $S$ is defined by bloc in the following way for example if $ng=2$:
+\begin{equation}
+S = \left[ S_{1,1} S_{1,2} S_{2,1} S_{2,2} \right] 
+\label{eq:S-constru}
+\end{equation}
+In this case the matrix will have a size of $8 \times 12$.
+The same construction can be applied to the matrix $R$ with:
+\begin{equation}
+R_{i,j}= - \omega_i \omega_j \left[ \tilde{B}^T(\eta_i,\xi_j) \frac{D}{\Delta t} \hat{F}^Q(\eta_i,\xi_j)\right]
+\label{eq:R}
+\end{equation}
+This matrix will be multiplied to the component $\hat{E}_n$ of the state vector $X_{n+1}$. We have the same sizes for the matrices $\tilde{B}$ and $\hat{F}^Q$ as previously. Thus $R$ will have a shape of $(2*ng^2) \times (3*ng^2)$. For $\hat{\Sigma}_n$, let us define the matrix $V$ with:
+\begin{equation}
+V_{i,j}= \omega_i \omega_j \tilde{B}^{pT}(\eta_i,\xi_j)
+\label{eq:R}
+\end{equation}
+Since $\tilde{B}^p$ has size of $3\times (2*ng^2)$, the matrix $V$ with the same construction as the above matrices $R$ and $S$ will have a shape of $(2*ng^2)\times (3*ng^2)$. 
+\par To the equations \ref{eq:main-relations1} and \ref{eq:main-relations2}, we also add the following relations. From the expression of the strain at the next time step:
+\begin{equation}
+\hat{\epsilon}_{n+1} = \frac{1}{\Delta t} \left[B^\epsilon \dot{u}_{n+1} + B^Q u_{n+1} + \frac{1}{\Delta t} \hat{F}^\epsilon \hat{\epsilon}_n-\hat{F}^Q \hat{E}_n \right]
+\label{eq:stain-tn+1}
+\end{equation}
+We can derived the following expression:
+\begin{equation}
+- \frac{1}{\Delta t} B^\epsilon \dot{u}_{n+1} - \frac{1}{\Delta t} B^Q u_{n+1} + \hat{\epsilon}_{n+1}-\frac{1}{\Delta t^2} \hat{F}^\epsilon \hat{\epsilon}_n + \frac{1}{\Delta t} \hat{F}^Q \hat{E}_n = 0
+\label{eq:main-relations3}
+\end{equation} 
+From the recurence relationship of the integral of the strain we can derived the following expression:
+\begin{equation}
+\hat{E}_{n+1} - \hat{E}_n - \Delta t \hat{\epsilon}_{n+1} = 0
+\label{eq:main-relations4}
+\end{equation} 
+And the relationship for the integral of the stress:
+\begin{equation}
+\hat{\Sigma}_{n+1} - \hat{\Sigma}_n - \Delta t D \hat{\epsilon}_{n+1} = 0
+\label{eq:main-relations5}
+\end{equation} 
+\par Using the equations \ref{eq:main-relations1}, \ref{eq:main-relations2}, \ref{eq:main-relations3},\ref{eq:main-relations4} and \ref{eq:main-relations5}, we can formulate the 2 matrices $A$ and $B$ such that:
+\begin{equation}
+A X_{n+1} + B X_n = 0
+\label{eq:geradin-ampl}
+\end{equation} 
+Therefore we have:
+\begin{equation}
+A = \begin{bmatrix}
+\Delta t^2 \beta M^{-1} (C+\tilde{C}) & Id + \Delta t^2 \beta M^{-1}(K+\tilde{K}) & \Delta t^2 \beta M^{-1} S & \Delta t^2 \beta M^{-1} R & \Delta t^2 \beta M^{-1} V \\
+I_d + \Delta t \gamma M^{-1} (C+\tilde{C})& \Delta t \gamma M^{-1} (K+\tilde{K}) & \Delta t \gamma M^{-1} S& \Delta t \gamma M^{-1} R & \Delta t \gamma M^{-1} V \\
+-\frac{1}{\Delta t} B^\epsilon & -\frac{1}{\Delta t} B^Q & I_d & 0 & 0 \\
+0 & 0 & -\Delta t I_d & I_d & 0 \\
+0 & 0 & -\Delta t L & 0 & I_d 
+\end{bmatrix}
+\label{eq:A}
+\end{equation}
+In this matrix $A$ on the last "row", the matrix $L$ is a squared matrix such that   
+on the diagonal we have blocs of size  $3 \times 3$ correspnding to the matrix $D$. Here the identity matrix $I_d$ is of size $3*(ng^2) \times 3*(ng^2)$.
+We also have the definition of the matrix $B$.
+\begin{equation}
+\resizebox{\columnwidth}{!}{
+$
+B = \begin{bmatrix}
+ - \Delta t I_d + \Delta t^2 (\frac{1}{2} - \beta) M^{-1} (C+\tilde{C}) & - Id + \Delta t^2 (\frac{1}{2} - \beta) M^{-1}(K+\tilde{K}) & \Delta t^2 (\frac{1}{2} - \beta) M^{-1} S & \Delta t^2 (\frac{1}{2} - \beta) M^{-1} R & \Delta t^2 (\frac{1}{2} - \beta) M^{-1} V \\
+-I_d + \Delta t (1-\gamma) M^{-1} (C+\tilde{C})& \Delta t (1-\gamma) M^{-1} (K+\tilde{K}) & \Delta t (1-\gamma) M^{-1} S& \Delta t (1-\gamma) M^{-1} R & \Delta t (1-\gamma) M^{-1} V \\
+0 & 0 & -\frac{1}{\Delta t^2}\hat{F}^\epsilon & \frac{1}{\Delta t} \hat{F}^Q & 0 \\
+0 & 0 & 0 & -I_d & 0 \\
+0 & 0 & 0 & 0 & -I_d 
+\end{bmatrix}
+$
+}
+\label{eq:B}
+\end{equation}
+
+
+
