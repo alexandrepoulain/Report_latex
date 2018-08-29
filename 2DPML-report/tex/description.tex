@@ -20,13 +20,13 @@ C_{ijkl} = (\kappa-\frac{2}{3}\mu)\delta_{ij}\delta_{kl}+\mu(\delta_{ik}\delta_{
 Where $\kappa$ is the bulk modulus and $\mu$ the shear modulus.\\
 If we consider an unbounded domain, the system \ref{eq:2D-motion-elastic} admits solutions of the form of P- waves and S-waves. The solutions of P-waves form have the following formulation: 
 \begin{equation}
-u(x,t) = q exp(-i k_p x . p) exp(i\omega t)
+u(x,t) = q \exp(-i k_p x . p) \exp(i\omega t)
 \label{eq:elastic-sol-p}
 \end{equation}
 with $k_p = \frac{\omega}{c_p}$ and $c_p = \sqrt{(\kappa+4\mu/3)/\rho}$ which is the celerity of the P-wave. In the equation \ref{eq:elastic-sol-p} $p$ denotes the unit vector pointing the direction of propagation of the wave and $q=\pm p$.   
 The solution of S-wave form take the following formulation:
 \begin{equation}
-u(x,t) = q exp(-i k_s x.p) exp(i \omega t)
+u(x,t) = q \exp(-i k_s x.p) \exp(i \omega t)
 \end{equation}
 Where $k_s = \omega / c_s$ and the S-wave speed is $c_s =\sqrt{ \mu/\rho}$ and $q.p =0$.
 \subsection{Strong form in frequency domain}
@@ -44,12 +44,13 @@ f^\alpha_i = a_\alpha \left(\frac{x_i - x_0}{L_p}  \right), x_i \in [x0,x0+d] \\
 % Little explanation of what is the effect of the coordinate stretching function ? 
 The tunable property of the attenuation function relies mainly on the formulation of the attenuation functions. The value of the coefficients of attenuation $a_p$, $a_e$, the order of the polynomial $n$, and the size of the PML $L_p$ can be defined by the user. As we will see in the section concerning the numerical results these parameters need to be chosen carefully depending on the problem to obtain the "best" result possible. The concept of "best result" depends of course of the expectations of the user. Accuracy versus performance is the recurent dilemma for all numerical simulations. The perfectly matched layer does not get out of this rule. Moreover an increase of the attenuation coefficients leads to a higher reflection of the wave from the interface between the physical medium and the PML. In order to choose the value these coefficients, we can use the reflection coefficient for an incident pressure wave given by \cite{Basu2004}:
 \begin{equation}
-R_{pp} = \frac{cos(\theta+\theta_s)}{cos(\theta-\theta_s)} exp\left[-2\frac{c_s}{c_p}F_1(L_p)cos(\theta)\right]
+R_{pp} = \frac{cos(\theta+\theta_s)}{cos(\theta-\theta_s)} \exp\left[-2\frac{c_s}{c_p}F_1(L_p)cos(\theta)\right]
 \label{eq:Rpp} 
 \end{equation} 
 Where $c_p$ stands for the velocity of P-waves. The incident P-wave is characterised by $\theta$ its angle of incidence and $\theta_s$ its reflective angle after being reflected at the end of the PML. $F_1$ corresponds to the integral over the PML of the attenuation function for propagating waves: $F_1(L_p) = \int_{s=0}^{L_p} f^p(s) ds = \frac{\beta_0 L_p}{n+1}$. Thus, the attenuation coefficients can be expressed in function of the reflection coefficient:
 \begin{equation}
 a_\alpha = \ln\left(\frac{cos(\theta+\theta_s)}{R_{pp}cos(\theta-\theta_s)} \right) \frac{c_p}{c_s} \frac{n+1}{L_p cos(\theta)}
+\label{eq:alpha_kucu}
 \end{equation} 
 If we consider that the incident wave has an angle of $\theta = \theta_s = 0$ therefore the value of the coeffecient has the form:
 \begin{equation}
@@ -64,15 +65,29 @@ a_\alpha = \ln\left(\frac{1}{R_{pp}} \right) \frac{c_p}{c_s} \frac{n+1}{L_p cos(
 \end{cases}
 \label{eq:2D-PML-freq}
 \end{equation} 
-Where $C_{ijkl}$ are the components of the elastic constitutive tensor. In fact the system \ref{eq:2D-PML-freq} defines a perfectly matched medium (PMM) and the elastic medium is just a specific case of PMM with $\lambda_j(x_j) = 1$, $\forall x \in \Omega_{PML}$. If we imagine a PML surrounding an elastic medium, as in the figure \ref{}, we have to define for the PML $\lambda_j(x_j) = 1$ for $\forall x \in \Gamma_{PML}$ at the interface between the two-subdomains. 
- 
+Where $C_{ijkl}$ are the components of the elastic constitutive tensor. In fact the system \ref{eq:2D-PML-freq} defines a perfectly matched medium (PMM) and the elastic medium is just a specific case of PMM with $\lambda_j(x_j) = 1$, $\forall x \in \Omega_{PML}$. If we imagine a PML surrounding an elastic medium, as in the figure \ref{fig:scheme-layers}, we have to define for the PML $\lambda_j(x_j) = 1$ for $\forall x \in \Gamma_{PML}$ at the interface between the two-subdomains. \\
+The system of equations \ref{eq:2D-PML-freq} assumes harmonic time-dependence of the displacement, stress and strain. Therefore its solution can be written as $u(x,t) = \overline{u}(x,t)exp(i \omega t)$. If the stretching functions chosen have the formulation \ref{eq:complex-stret-2D} then the system \ref{eq:2D-PML-freq} has solutions of the form 
+\begin{equation}
+\overline{u}(x) = \exp[-\frac{c_s}{c_p}\sum_i F_i(x_i)p_i ] q  \exp(i k_p x . p)
+\end{equation}
+with $q = \pm p$, and
+\begin{equation}
+\overline{u}(x) = \exp [ -\sum_i F_i(x_i)p_i ] q  \exp(- i k_s x . p)
+\end{equation}
+with $q.p=0$ and $F_i(x_i) = \int_0^{x_i} f_i(\xi) d\xi$.\\
+Therefore the solution admitted in the PML corresponds to the solution of the system \ref{eq:2D-motion-elastic} but with an imposed spatial attenuation. 
+The attenuation contained in the term $\exp[ - F_i p_i ]$ for the $x_i$ direction is independent of the frequency if the direction of propagation is. 
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{images/scheme-layers.png}
+\caption{Scheme of the propagation of a wave within the elastic medium (on the left) and the PML (on the right)}
+\label{fig:scheme-layers}
+\end{figure} 
 \subsection{Strong form in time domain}
-\par The strong form of the PML in the temporal domain can be obtained by inverse Fourier transform. Indeed the introduction of the complex-valued coordinates stretching functions makes the application of this inverse easier. In the following equation the number of lines below a tensor will precise its order. 
-%% Explanation on how to obtain these equations (for final version)
-%First of all, the third equation in \ref{eq:2D-PML-freq} is premultiplied by $i \omega \Lambda^{-1}$ where
-%\begin{equation}
-%\Lambda = 
-%\end{equation}
+\par The strong form of the PML in the temporal domain can be obtained by inverse Fourier transform of each equation of \ref{eq:2D-PML-freq}. Indeed the introduction of the complex-valued coordinates stretching functions makes the application of this inverse easier. In the following equation the number of lines below a tensor will precise its order. 
+%% Explanation on how to obtain these equations (for final version) maybe in appendice
 \begin{equation}
 \begin{cases}
 div(\doubleunderline{\sigma}\tilde{F}^e + \doubleunderline{\Sigma}\tilde{F}^p) = \rho f_m \underline{\ddot{u}} + \rho \frac{c_s}{b} f_c \underline{\dot{u}} + \frac{\mu}{b^2}f_k \underline{u}, & \text{In } \Omega_{PML} \times J\\
@@ -277,7 +292,7 @@ M\ddot{U}_{n+1} + \left(C+\tilde{C}\right)\dot{U}_{n+1} + \left(K+\tilde{K}\righ
 \end{equation}
 Where $M$,$C$ and $K$ are respectively the mass, damping and stiffness matrices resulting from the assembly of their element matrices \ref{eq:2Dpml-elem-mass}, \ref{eq:2Dpml-elem-damp} and \ref{eq:2Dpml-elem-stiff}. The matrices $\tilde{K}$ and $\tilde{C}$ derive from the assembly procedure of their element matrices \ref{eq:2Dpml-elem-effstiff} and \ref{eq:2Dpml-elem-effdamp}. $P(\hat{\epsilon}_n,\hat{E}_n,\hat{\Sigma}_n)$ is given by the equation \ref{eq:pseudo-intern} and is known at the beginning of the time step since it depends only on components of the previous time. 
 \subsection{Time integration scheme}
-The complete discrete equations obtained in the previous part acn be integrated using the Newmark-$\beta$ implicit scheme. The classical Newmark approximation formulas are expressed in acceleration form:
+The complete discrete equations obtained in the previous part acn be integrated using the Newmark-$\beta$ scheme. The classical Newmark approximation formulas are expressed in acceleration form:
 \begin{equation}
 \begin{cases}
 U_{n+1} = U_{n,p} + \beta dt^2 \ddot{U}_{n+1} \\
@@ -301,7 +316,12 @@ where
 \begin{equation}
 \tilde{M} = M + \gamma dt \left(C+\tilde{C}\right) + \beta dt^2 \left(K+\tilde{K}\right)
 \end{equation}
-This matrix need to be inverted, this will be done before beginning the time stepping since all the matrices constituing it remain constant through the time stepping. 
+This matrix need to be inverted, this will be done before beginning the time stepping since all the matrices constituing it remain constant through the time stepping. Two schemes will be used in the following of this report:
+\begin{itemize}
+\item Implicit Newmark scheme: with $\gamma = 1/2$ and $\beta = 1/4$.
+\item Explicit Newmark scheme: with $\gamma = 1/2$ and $\beta = 0$.
+\end{itemize} 
+The properties of each schemes will be investigated in the next section concerning the stability and the last part will highlight the differences in term of performance and accuracy.
 
 
 

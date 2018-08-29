@@ -329,7 +329,7 @@ On the two following figures, we will represents all the eigenvalues in the comp
 \begin{minipage}{.5\textwidth}
   \centering
   \includegraphics[width=1.\linewidth]{images/eig_pml_imp_10.png}
-  \captionof{figure}{eigenvakues in the complex plane}
+  \captionof{figure}{eigenvalues in the complex plane}
   \label{fig:eig_pml_imp_10}
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
@@ -345,15 +345,34 @@ By increasing the attenuation in the element, another property of the PML can be
 \centering
 \begin{minipage}{.5\textwidth}
   \centering
-  \includegraphics[width=1.\linewidth]{images/eig_pml_imp_10.png}
-  \captionof{figure}{eigenvakues in the complex plane}
-  \label{fig:eig_pml_imp_10}
+  \includegraphics[width=1.\linewidth]{images/eig_pml_imp_100.png}
+  \captionof{figure}{eigenvalues in the complex plane}
+  \label{fig:eig_pml_imp_100}
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
   \centering
-  \includegraphics[width=1.\linewidth]{images/spect_rad_pml_imp_10.png}
+  \includegraphics[width=1.\linewidth]{images/spect_rad_pml_imp_100.png}
   \captionof{figure}{Moduli of the eigenvalues}
-  \label{fig:spect_rad_pml_imp_10}
+  \label{fig:spect_rad_pml_imp_100}
 \end{minipage}
 \end{figure} 
+Comparing the figures \ref{fig:eig_pml_imp_10} and \ref{fig:eig_pml_imp_100}, we can observe that the circles formed by the representation of the eigenvalues is flatter when the attenuation is stronger. We can conclude that the attenuation of all modes of deformation is stronger when we increase the attenuation. By comparing the figures \ref{fig:spect_rad_pml_imp_10} and \ref{fig:spect_rad_pml_imp_100} we can observe that the range of frequencies attenuated by the PML becomes larger when we increase the attenuation. This result highlights a property of the PML: we can attenuate waves of all frequency by a careful choice of the parameter of the PML. Also, we can observe that choosing a higher value of attenuation leads to the ability of the PML to attenuate higher frequencies. \\
+Let us now review the results concerning the relative periodicity error and the numerical damping ratio. We pick again the value of attenuation $f_p = f_e = 10$. An important constatation with the formulation of the amplification matrix is that it leads to the calculation of eigenvalues and eigenmodes of deformation not related to any "physical" mode of deformation. This is of course due to the fact that the PML is not a physical material, its only purpose is to attenuate wave and this leads to the presence of spurious modes. Their values of relative periodicity error and numerical damping ratio are not to be considered and are in fact aberrant. The main thing that we already reviewed is, for the implicit scheme, they do not lead to the unstability of the scheme. We will consider in the part the analysis of the results for the dominant mode of deformation, the shear mode.  
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.\linewidth]{images/rel_per_err_pml_imp_10.png}
+  \captionof{figure}{Relative periodicity error}
+  \label{fig:rel_per_err_pml_imp_10}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.\linewidth]{images/num_damp_pml_imp_10.png}
+  \captionof{figure}{Numerical damping ratio}
+  \label{fig:num_damp_pml_imp_10}
+\end{minipage}
+\end{figure} 
+It is difficult to analyze precisely the results of the relative periodicity error shown on the figure \ref{fig:rel_per_err_pml_imp_10}. The PML is not a physical medium and the error in period is not important since its purpose is to attenuate the wave and not propagating it. Therefore the error in period is important and increase with the frequency of the wave. The PML is concieved to introduce an artificial damping in the system, this is why we can observe on the figure \ref{fig:num_damp_pml_imp_10} that, even the implicit Newmark scheme associated with the PML introduce a numerical damping. This attenuation increases linearly with the frequency. Of course by increasing the attenuation in the element the numerical damping ratio will take bigger values.
+\item \underline{Explicit Newmark scheme :}
 \end{itemize} 
