@@ -31,7 +31,7 @@ In term of displacement this wave has the following "mexican hat" form:
   \caption{Ricker wave in time domain}
   \label{fig:Ricker}
 \end{figure}  
-We will inject this wave at the left extremity of the medium and fix its propagation within the $x$ direction. We will choose the set of parameter $t_p = 3$, $t_s = 3$ and $A = 1$ which gives us exactly the wave shown in figure \ref{fig:Ricker}.
+We will inject this wave at the left extremity of the medium and fix its propagation within the $x$ direction. We will choose the set of parameter $t_p = 3$, $t_s = 3$ and $A = 1e6$ which gives us exactly the wave shown in figure \ref{fig:Ricker}.
 \subsubsection{Analysis of the results}
 We will use the Implicit Newmark scheme as integration scheme. The analysis of the performance will not be reviewed since it is a very simple test case. Therefore a comparison between the results obtained with the Explicit scheme is not needed. Both scheme are able to be accurate and performant on a simple case like the bar test. For more complex case, it will be interresting to compare the scheme and highlights the pros and cons of both schele. For our analysis, a specific attention will be dedicated to the reflexion of the wave due to the interface. The time step used is $dt = 0.025$. For this test case the critical time step is $0.06$.\\ 
 
@@ -67,4 +67,77 @@ The analysis of the energy of the system is important since the PML has the facu
 The energies starts growing together as the wave enters the medium. Once the wave reaches the PML, the energies start decaying rapidly and reaches a value close to $0$. In fact a close analysis of the figure \ref{fig:simple_test_en_imp} and zooming on it, we can conclude that the energies tend to $0$. 
 
 \subsection{Lamb's test case}
-The Lamb's test consists in an infinite half space medium and the application of a load, given by a Ricker wave, at the surface. This context can be summarized by the figure \ref{fig:Lamb_test}. The left size disposes of symmetry conditions and the medium is surrounded on the left size and in the depth by a PML. This situation permits to simulate the propagation of sismic waves. The simulation will involves P-, S- and Rayleigh waves which are key waves in the analysis of sismic scenarios.      
+\subsubsection{Description}
+The Lamb's test consists in an infinite half space medium and the application of a load, given by a Ricker wave, at the surface. This context can be summarized by the figure \ref{fig:Lamb_test}. The left size disposes of symmetry conditions and the medium is surrounded on the left size and in the depth by a PML. This situation permits to simulate the propagation of sismic waves. The simulation will involves P-, S- and Rayleigh waves which are key waves in the analysis of sismic scenarios. It is known to be a good test to highlight the performance of the PML to attenuate surface waves \cite{Liu2006}. \\
+In this test we choose the same values for the parameters of the elastic medium than in the previous test case. For the PML, we choose a value of the coefficient of reflexion $R_{pp} = 1e-6$ to have a stronger attenuation since surface wave are more complicated to decay. The same parameters for the input Ricker wave are the same than the previous bar test. The elastic medium is a square of length $250$ and the PML have a width of $200$.
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.4]{images/Lamb_test.png}
+  \caption{Lamb's test}
+  \label{fig:Lamb_test}
+\end{figure}    
+
+\subsubsection{Analysis of the results}
+Using the implicit integration scheme we obtain the following results for $4$ specific times:
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.\linewidth]{images/Lamb1.png}
+  \caption{Time $10$}
+  \label{fig:Lamb1}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.\linewidth]{images/Lamb3.png}
+  \caption{Time $200$}
+  \label{fig:Lamb2}
+\end{minipage}
+\end{figure} 
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.\linewidth]{images/Lamb5.png}
+  \caption{Time $500$}
+  \label{fig:Lamb3}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.\linewidth]{images/Lamb6.png}
+  \caption{Time $1000$}
+  \label{fig:Lamb4}
+\end{minipage}
+\end{figure} 
+\begin{itemize}
+\item \underline{Figure \ref{fig:Lamb1} :} The wave starts propagating in the elastic medium. The faster wave to propagate is the P-wave which goes in the depth of the soil. 
+\item \underline{Figure \ref{fig:Lamb2} :} The different waves can clearly be seen. The P-wave is near the edge of the PML located at the bottom of the medium of interest. Following the surface, the S-wave propagates toward the PML followed by the Rayleigh waves. On ths figures two of them can be seen and are represented in red because they involve the larger displacement.
+\item \underline{Figure \ref{fig:Lamb3} :} The Rayleigh waves reached the PML and starts to be attenuated. The S- and P-waves are already been attenuated.
+\item \underline{Figure \ref{fig:Lamb4} :} All waves have been attenuated.
+\end{itemize}
+Let us record the displacement of a node located at the surface of the medium and at $x=100$. The displacement are recorded with both directions.
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{images/Lamb_disp_x_imp.png}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{images/Lamb_disp_y_imp.png}
+\end{minipage}
+\caption{Displacement within the $x$ direction (left) and $y$ direction (right)}
+\label{fig:Lamb_disp_imp_pml}
+\end{figure} 
+As in the previous test case, we can observe a slight reflection corresponding to less than $1\%$ of the initial wave. We can conclude that in term of displacement the PML is able to attenuate surface waves like Rayleigh waves.
+The power of attenuation of the PML can also be highlighted by the decay of the energies.
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.8]{images/Lamb_energy_imp.png}
+  \caption{Potential, kinetic and total energies}
+  \label{fig:Lamb_energy_imp}
+\end{figure}  
+As we can observe on the figure \ref{fig:Lamb_energy_imp}, the energies starts increasing and oscillating associated with the progressive arrival of the different waves. The energies seem to reach an equilibrium when all waves are propagating within the medium. Then the energies start decaying: the waves reached the PML and are attenuated. The energies tend to the value $0$ when $t$ tends to large values. \\  
+In the context of seismic simulation, the analysis of the propagation of the waves can be realised considering the medium infinite since the wave is not reflected at the boundaries of the domain of interest. A careful choice of the parameters of the PML can minimize the reflexion of the wave due to truncation interface. By its tunable ability the PML remains a very good technique to simulate the propagation of waves in infinite medium.\\
+

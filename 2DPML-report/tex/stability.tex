@@ -363,16 +363,79 @@ Let us now review the results concerning the relative periodicity error and the 
 \begin{minipage}{.5\textwidth}
   \centering
   \includegraphics[width=1.\linewidth]{images/rel_per_err_pml_imp_10.png}
-  \captionof{figure}{Relative periodicity error}
-  \label{fig:rel_per_err_pml_imp_10}
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
   \centering
+  \includegraphics[width=1.\linewidth]{images/rel_per_err_pml_imp_10_80.png}
+\end{minipage}%
+\captionof{figure}{Relative periodicity error}
+\label{fig:rel_per_err_pml_imp_10}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
   \includegraphics[width=1.\linewidth]{images/num_damp_pml_imp_10.png}
-  \captionof{figure}{Numerical damping ratio}
-  \label{fig:num_damp_pml_imp_10}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.\linewidth]{images/num_damp_pml_imp_10_80.png}
 \end{minipage}
+\captionof{figure}{Numerical damping ratio}
+\label{fig:num_damp_pml_imp_10}
 \end{figure} 
 It is difficult to analyze precisely the results of the relative periodicity error shown on the figure \ref{fig:rel_per_err_pml_imp_10}. The PML is not a physical medium and the error in period is not important since its purpose is to attenuate the wave and not propagating it. Therefore the error in period is important and increase with the frequency of the wave. The PML is concieved to introduce an artificial damping in the system, this is why we can observe on the figure \ref{fig:num_damp_pml_imp_10} that, even the implicit Newmark scheme associated with the PML introduce a numerical damping. This attenuation increases linearly with the frequency. Of course by increasing the attenuation in the element the numerical damping ratio will take bigger values.
 \item \underline{Explicit Newmark scheme :}
+We have shown in the previous part concerning the standard element stability analysis that the Explicit scheme is conditionally stable and the critical value of frequency is $\omega h = 2$. Therefore for the stability analysis of the same scheme associated with the PML we will dedicate a specific attention to the critical value where the scheme starts to become unstable. 
+For $f_p = f_e = 10$, we obtain the following results:
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.99\linewidth]{images/eig_pml_exp_10.png}
+  \captionof{figure}{Eigenvalues of the amplification matrix in complex plane}
+  \label{fig:eig_pml_exp_10}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.99\linewidth]{images/spect_rad_pml_exp_10.png}
+  \captionof{figure}{Spectral radius}
+  \label{fig:spect_rad_pml_exp_10}
+\end{minipage}
+\end{figure} 
+The stability of the explicit scheme associated with the PML is also conditionally stable because, as we can observe on the figure \ref{fig:eig_pml_exp_10}, the representation of the eigenvalues in the complex plane goes out the unit circle from a certain value of $\omega_{max} h$. Looking at the figure \ref{fig:spect_rad_pml_exp_10}, we can determine this limit of stability. We can find that the critical value is $\omega_{max} h = 80$ which is of course larger than the limit of the stability of the explicit scheme associated with the standard element. Therefore we can ask ourselves why the limit of stability is extended. Some features of the PML must impact the scheme in this manner. Let us focus on the attenuation and increase the value to $f_p = f_e = 100$.
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.90\linewidth]{images/eig_pml_exp_100.png}
+  \captionof{figure}{Eigenvalues of the amplification matrix in complex plane}
+  \label{fig:eig_pml_exp_100}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.99\linewidth]{images/spect_rad_pml_exp_100.png}
+  \captionof{figure}{Spectral radius}
+  \label{fig:spect_rad_pml_exp_100}
+\end{minipage}
+\end{figure} 
+The first observation that can be made using the figure \ref{fig:eig_pml_exp_100} is the same as in the context of the implicit scheme: increasing the attenuation makes the representation of the circle formed by the eigenvalues flatter. This is due to the fact that the amplitude of the deformation is attenuated in a stronger manner when the attenuation coefficient is larger. Secondly, using the figure \ref{fig:spect_rad_pml_exp_100}, we can observe that by increasing the attenuation the value of the critical value where the scheme becomes unstable is postponed at the value $\omega_{max} h = 200$. We can conclude that the attenuation impacts the explicit scheme and permits to take larger value of time step while keeping the stability. An hypothesis to explain this property of the PML is that the attenuation affects the amplitude of the deformation and therefore is able to decay a finite variation of the state vector. This results in postponing the critical value of time step for which this finite variation becomes to large to not introduce a non-increasing variation of the state vector at a subsequent time. \\
+Since the scheme becomes unstable at a certain value of time step the analysis of the relative periodicity error and of the numerical damping ratio is difficult. Let us review the result using only the values for the shear mode of deformation since it is the dominant mode. We will also look at the results obtained when the scheme remains stable $h < h_{crit}$. After this value the results can not be analysed and the values become too large.  
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.90\linewidth]{images/rel_per_err_pml_exp_10.png}
+  \captionof{figure}{Relative periodicity error}
+  \label{fig:rel_per_err_pml_exp_10}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.99\linewidth]{images/num_damp_pml_exp_10.png}
+  \captionof{figure}{Numerical damping ratio}
+  \label{fig:num_damp_pml_exp_10}
+\end{minipage}
+\end{figure}   
+Comparing to the figures \ref{fig:rel_per_err_pml_imp_10} and \ref{fig:num_damp_pml_imp_10} the results obtained in the stable part of the explicit scheme follows the same trends. Therefore the same observation can be made. 
 \end{itemize} 
