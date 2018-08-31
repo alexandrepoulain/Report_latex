@@ -41,7 +41,11 @@ Due to the complexity of the formulation of these PMLs, their construction and u
 % What was done
 We attend in this report to present the formulation of a stable unsplit field two-dimensional perfectly matched layer based on the weak form of the equations of elastodynamics. 
 
-\noindent First of all, the presentation of the construction of the PML will be detailed, including an extensive description of the governing equations. Using this description, we will explain the proof of the stability of the numerical scheme: the method employed will be described and the results will be analyzed. This stability analysis will be followed by the implementation of the scheme in Akantu: an open-source finite-element software developed at the Computational Solid Mechanics Laboratory of the EPFL. The results on two test cases will be reviewed in the second part and a special attention will be dedicated to the reflection of the waves since this parameter represents the efficiency of the PML. We will shortly see that the scheme is efficient to attenuate incident waves with less than $1$ percent of the incident wave reflected in some extreme cases where the length of the PML and the coefficients of the attenuation functions are reduced to their minimum.   
+\noindent First of all, the presentation of the construction of the PML will be detailed, including an extensive description of the governing equations. During this description, we will also see how the PML is able to attenuate waves. This will be followed by the implementation of the scheme in Akantu: an open-source finite-element software developed in the Computational Solid Mechanics Laboratory of the EPFL. The algorithm with the main steps of the scheme will be presented.
+The numerical stability of the two dimensional unsplit field PML has never been demonstrated in the context of elastodynamics. 
+Thus the method employed to prove the stability will be described and the results will be analyzed. The implicit and explicit schemes associated with the PML will be proved to be respectively unconditionally and conditionally stable.  Some of the key features of the PML will also be highlighted by this analysis, such as the postponing of the critical time step, for which the explicit scheme becomes unstable.
+The results on two test cases will be reviewed in the last part of this report and a special attention will be dedicated to the reflection of the waves since this parameter represents the efficiency of the PML. For both test cases, a non-harmonic wave is injected within the domain of interest and it is characterised by a Ricker wave. The first test case is the simplest one and will be used to confirm the ability of the PML to attenuate incident wave. It is composed of a bar separated in two parts: an elastic medium and a PML. We will shortly see that the scheme is efficient to attenuate incident waves with less than $1$ percent of the incident wave reflected. The second test case is a well known study case for seismic wave: the Lamb's test. It involves $3$ types of wave: pressure, shear and Rayleigh waves. This latter wave is a powerful surface wave, but it will be attenuated by the PML in a very efficient manner. Once again the efficiency of the PML will be estimated to less than $1 \%$ of incident wave reflected by the truncation interface. To be able to use the PML and to fit a specific simulation some advices will be given in this part. \\
+Using the open source library Akantu, the reader is strongly advised to download the code and run the example presented in this report. In fact, they will constitute to the reader a good way to get hands-on training with Akantu and the PML method at the same time.        
 %% Results
 
 
@@ -67,6 +71,8 @@ We attend in this report to present the formulation of a stable unsplit field tw
 \input{tex/description.tex}
 \newpage
 \input{tex/stability.tex}
+\newpage
+\input{tex/results.tex}
 
 \newpage
 \input{tex/conclusion}

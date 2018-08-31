@@ -3,8 +3,8 @@
 % Maybe a part here on how to make the junction GC maybe 
 
 \subsection{Elastic medium}
-As an introduction of the governing equations, let us decribe the elastic medium since the PML is surrounding it. In fact the construction of the PML relies on the same governing equations as the physical medium and share some parameters with it.\\
-Let us consider an isotropic homogeneous elastic medium under plane-strain motion and in without body forces. The motion in the medium is governed by:
+As an introduction of the governing equations, let us describe the elastic medium since the PML is surrounding it. In fact the construction of the PML relies on the same governing equations as the physical medium and share some parameters with it.\\
+Let us consider an isotropic homogeneous elastic medium under plane-strain motion and without body forces. The motion in the medium is governed by:
 \begin{equation}
 \begin{cases}
 \sum_{j} \frac{\partial \sigma_{ij}}{\partial x_j} & =  \rho \ddot{u}_i \\
@@ -13,41 +13,41 @@ Let us consider an isotropic homogeneous elastic medium under plane-strain motio
 \end{cases}
 \label{eq:2D-motion-elastic}
 \end{equation} 
-With $u(x,t)$ the displacement, $\epsilon$ the strain, $\sigma$ the stress, $\rho$ the mass density of the medium. $C$ is the material stiffness tensor and its components are expressed in term of the Kronecker delta $\delta_{ij}$ as:
+With $u(x,t)$ the displacement, $\epsilon$ the strain, $\sigma$ the stress, $\rho$ the mass density of the medium. $C$ is the material stiffness tensor and its components are expressed in term of the Kronecker delta $\delta_{ij}$:
 \begin{equation}
 C_{ijkl} = (\kappa-\frac{2}{3}\mu)\delta_{ij}\delta_{kl}+\mu(\delta_{ik}\delta_{jl} + \delta_{il} \delta_{jk})
 \end{equation} 
 Where $\kappa$ is the bulk modulus and $\mu$ the shear modulus.\\
-If we consider an unbounded domain, the system \ref{eq:2D-motion-elastic} admits solutions of the form of P- waves and S-waves. The solutions of P-waves form have the following formulation: 
+If we consider an unbounded domain, the system \ref{eq:2D-motion-elastic} admits solutions of the form of P- waves and S-waves. The solutions of P-waves have the following formulation: 
 \begin{equation}
 u(x,t) = q \exp(-i k_p x . p) \exp(i\omega t)
 \label{eq:elastic-sol-p}
 \end{equation}
-with $k_p = \frac{\omega}{c_p}$ and $c_p = \sqrt{(\kappa+4\mu/3)/\rho}$ which is the celerity of the P-wave. In the equation \ref{eq:elastic-sol-p} $p$ denotes the unit vector pointing the direction of propagation of the wave and $q=\pm p$.   
+with $k_p = \frac{\omega}{c_p}$ where $\omega$ is the frequency of the wave and $c_p = \sqrt{(\kappa+4\mu/3)/\rho}$ which is the celerity of the P-wave. In the equation \ref{eq:elastic-sol-p} $p$ denotes the unit vector pointing in the direction of propagation of the wave and $q=\pm p$.   
 The solution of S-wave form take the following formulation:
 \begin{equation}
 u(x,t) = q \exp(-i k_s x.p) \exp(i \omega t)
 \end{equation}
 Where $k_s = \omega / c_s$ and the S-wave speed is $c_s =\sqrt{ \mu/\rho}$ and $q.p =0$.
 \subsection{Strong form in frequency domain}
-Before describing the governing equations of the two-dimensional PML let us introduce the following notations: $\Omega_{PML}$ will denote the PML domain which is bounded by $\Gamma{PML} = \Gamma_{PML}^D \cup \Gamma_{PML}^N$. $\Gamma_{PML}^D$ corresponds to the boundary where the Dirichlet condition will be applied (imposed displacement). $\Gamma_{PML}^N$ is the boundary where the tractions will be applied and represents the boundary of the Neumann conditions. The intersection of these two boundary defined by their imposed conditions is null: $\Gamma_{PML}^D \cap \Gamma_{PML}^N = \emptyset$. The temporal domain will be denoted by $J = [0,T]$ with $T$ the end time.\\
+Before describing the governing equations of the two-dimensional PML let us introduce the following notations: $\Omega_{PML}$ will denote the PML domain which is bounded by $\Gamma_{PML} = \Gamma_{PML}^D \cup \Gamma_{PML}^N$. $\Gamma_{PML}^D$ corresponds to the boundary where the Dirichlet condition are applied (imposed displacement). $\Gamma_{PML}^N$ is the boundary where the tractions are applied and represents the boundary of the Neumann conditions. The intersection of these two boundaries defined by the imposed conditions is null: $\Gamma_{PML}^D \cap \Gamma_{PML}^N = \emptyset$. The temporal domain will be denoted by $J = [0,T]$ with $T$ the end time.\\
 The classical formulation of PML begins with the introduction of the complex-valued coordinates stretching functions $\lambda_i$. They are used to replace the real coordinates by the complex ones: $x_i \rightarrow \tilde{x}_i: \mathbb{R} \rightarrow \mathbb{C}$.
 \begin{equation}
 \lambda_i(x_i) = \frac{\partial \tilde{x}_i}{\partial x_i} = 1+f^e_i(x_i)-\frac{i}{b k_s} f^p_i(x_i)
 \label{eq:complex-stret-2D}
 \end{equation} 
-where $b$ is the characteristic length of the problem. $k_s=\omega / c_s$ denotes the wavenumber ($\omega$ is the pulsation and $c_s$ is the celerity of shear waves). $f^p_i$ and $f^e_i$ are the attenuation functions for respectively propagating and evanescent waves. They are written as polynomial of order $n$. 
+where $b$ is the characteristic length of the problem. $k_s=\omega / c_s$ denotes the wavenumber ($\omega$ is the pulsation and $c_s$ is the celerity of shear waves). $i$ is used to denote the direction $x$ or $y$. $f^p_i$ and $f^e_i$ are the attenuation functions for respectively propagating and evanescent waves. They are written as a polynomial of order $n$. 
 \begin{equation}
-f^\alpha_i = a_\alpha \left(\frac{x_i - x_0}{L_p}  \right), x_i \in [x0,x0+d] \\
+f^\alpha_i = a_\alpha \left(\frac{x_i - x_0}{L_{p,i}}  \right), x_i \in [x0,x0+d] \\
 \label{eq:attenuation-functions}
 \end{equation}
 % Little explanation of what is the effect of the coordinate stretching function ? 
-The tunable property of the attenuation function relies mainly on the formulation of the attenuation functions. The value of the coefficients of attenuation $a_p$, $a_e$, the order of the polynomial $n$, and the size of the PML $L_p$ can be defined by the user. As we will see in the section concerning the numerical results these parameters need to be chosen carefully depending on the problem to obtain the "best" result possible. The concept of "best result" depends of course of the expectations of the user. Accuracy versus performance is the recurent dilemma for all numerical simulations. The perfectly matched layer does not get out of this rule. Moreover an increase of the attenuation coefficients leads to a higher reflection of the wave from the interface between the physical medium and the PML. In order to choose the value these coefficients, we can use the reflection coefficient for an incident pressure wave given by \cite{Basu2004}:
+The tunable property of the PML relies mainly on the formulation of the attenuation functions. The value of the coefficients of attenuation $a_p$, $a_e$, the order of the polynomial $n$, and the size of the PML $L_p$ can be defined by the user. As we will see in the section concerning the numerical results, these parameters need to be chosen carefully and depending on the problem to obtain the "best" result possible. The concept of "best result" depends on the expectations of the user. Accuracy versus performance is a deep-seated problem for all numerical simulations. The perfectly matched layer does not get out of this rule. In order to choose the value of these coefficients, we can use the reflection coefficient for an incident pressure wave given by \cite{Basu2004}:
 \begin{equation}
 R_{pp} = \frac{cos(\theta+\theta_s)}{cos(\theta-\theta_s)} \exp\left[-2\frac{c_s}{c_p}F_1(L_p)cos(\theta)\right]
 \label{eq:Rpp} 
 \end{equation} 
-Where $c_p$ stands for the velocity of P-waves. The incident P-wave is characterised by $\theta$ its angle of incidence and $\theta_s$ its reflective angle after being reflected at the end of the PML. $F_1$ corresponds to the integral over the PML of the attenuation function for propagating waves: $F_1(L_p) = \int_{s=0}^{L_p} f^p(s) ds = \frac{\beta_0 L_p}{n+1}$. Thus, the attenuation coefficients can be expressed in function of the reflection coefficient:
+Where $c_p$ stands for the velocity of P-waves. The incident P-wave is characterised by $\theta$, its angle of incidence and $\theta_s$, its reflective angle after being reflected at the end of the PML. $F_1$ corresponds to the integral over the PML of the attenuation function for propagating waves: $F_1(L_p) = \int_{s=0}^{L_p} f^p(s) ds = \frac{\beta_0 L_p}{n+1}$. Thus, the attenuation coefficients can be expressed in function of the reflection coefficient:
 \begin{equation}
 a_\alpha = \ln\left(\frac{cos(\theta+\theta_s)}{R_{pp}cos(\theta-\theta_s)} \right) \frac{c_p}{c_s} \frac{n+1}{L_p cos(\theta)}
 \label{eq:alpha_kucu}
@@ -56,17 +56,17 @@ If we consider that the incident wave has an angle of $\theta = \theta_s = 0$ th
 \begin{equation}
 a_\alpha = \ln\left(\frac{1}{R_{pp}} \right) \frac{c_p}{c_s} \frac{n+1}{L_p cos(\theta)}
 \end{equation}
-\par Using the complex-valued coordinates stretching functions \ref{eq:complex-stret-2D}, the strong form of the equation of motion for the PML in the frequency domain is defined by:
+\par Using the complex-valued coordinates stretching functions \ref{eq:complex-stret-2D}, the strong form of the equations of motion for the PML in the frequency domain is defined by:
 \begin{equation}
 \begin{cases}
-\sum_{j} \frac{1}{\lambda_j(x_j)} \frac{\partial \sigma_{ij}}{\partial x_j} & = - \omega^2 \rho u_j \\
-\sigma_{ij} &= \sum_{k,l} C_{ijkl} \epsilon_{ij} \\
+\sum_{j} \frac{1}{\lambda_j(x_j)} \frac{\partial \sigma_{ij}}{\partial x_j} & = - \omega^2 \rho u_i \\
+\sigma_{ij} &= \sum_{k,l} C_{ijkl} \epsilon_{kl} \\
 \epsilon_{ij} &= \frac{1}{2} \left(\frac{1}{\lambda_j(x_j)} \frac{\partial u_{i}}{\partial x_j} + \frac{1}{\lambda_i(x_i)} \frac{\partial u_{j}}{\partial x_i} \right)
 \end{cases}
 \label{eq:2D-PML-freq}
 \end{equation} 
-Where $C_{ijkl}$ are the components of the elastic constitutive tensor. In fact the system \ref{eq:2D-PML-freq} defines a perfectly matched medium (PMM) and the elastic medium is just a specific case of PMM with $\lambda_j(x_j) = 1$, $\forall x \in \Omega_{PML}$. If we imagine a PML surrounding an elastic medium, as in the figure \ref{fig:scheme-layers}, we have to define for the PML $\lambda_j(x_j) = 1$ for $\forall x \in \Gamma_{PML}$ at the interface between the two-subdomains. \\
-The system of equations \ref{eq:2D-PML-freq} assumes harmonic time-dependence of the displacement, stress and strain. Therefore its solution can be written as $u(x,t) = \overline{u}(x,t)exp(i \omega t)$. If the stretching functions chosen have the formulation \ref{eq:complex-stret-2D} then the system \ref{eq:2D-PML-freq} has solutions of the form 
+Where $C_{ijkl}$ are the components of the elastic constitutive tensor. In fact the system \ref{eq:2D-PML-freq} defines a perfectly matched medium (PMM) and the elastic medium is just a specific case of PMM with $\lambda_j(x_j) = 1$, $\forall x \in \Omega_{PML}$. If we imagine a PML, surrounding an elastic medium, as in the figure \ref{fig:scheme-layers}, we have to define for the PML $\lambda_j(x_j) = 1$ for $\forall x \in \Gamma_{PML}$ at the interface between the two-subdomains. \\
+The system of equations \ref{eq:2D-PML-freq} assumes harmonic time-dependence of the displacement, stress and strain. Therefore, its solution can be written as $u(x,t) = \overline{u}(x,t)exp(i \omega t)$. If the stretching functions have the formulation \ref{eq:complex-stret-2D} then the system \ref{eq:2D-PML-freq} has solutions of the form: 
 \begin{equation}
 \overline{u}(x) = \exp[-\frac{c_s}{c_p}\sum_i F_i(x_i)p_i ] q  \exp(i k_p x . p)
 \end{equation}
@@ -76,7 +76,7 @@ with $q = \pm p$, and
 \end{equation}
 with $q.p=0$ and $F_i(x_i) = \int_0^{x_i} f_i(\xi) d\xi$.\\
 Therefore the solution admitted in the PML corresponds to the solution of the system \ref{eq:2D-motion-elastic} but with an imposed spatial attenuation. 
-The attenuation contained in the term $\exp[ - F_i p_i ]$ for the $x_i$ direction is independent of the frequency if the direction of propagation is. 
+The attenuation contained in the term $\exp[ - F_i p_i ]$ for the direction $i$ is independent of the frequency if the direction of propagation is. 
 
 
 \begin{figure}[H]
@@ -86,7 +86,7 @@ The attenuation contained in the term $\exp[ - F_i p_i ]$ for the $x_i$ directio
 \label{fig:scheme-layers}
 \end{figure} 
 \subsection{Strong form in time domain}
-\par The strong form of the PML in the temporal domain can be obtained by inverse Fourier transform of each equation of \ref{eq:2D-PML-freq}. Indeed the introduction of the complex-valued coordinates stretching functions makes the application of this inverse easier. In the following equation the number of lines below a tensor will precise its order. 
+\par The strong form of the PML in the temporal domain can be obtained by inverse Fourier transform of each equation of \ref{eq:2D-PML-freq}. Indeed the introduction of the complex-valued coordinates stretching functions makes the application of this inverse easier. In the following equation the number of lines below a tensor will specify its order. 
 %% Explanation on how to obtain these equations (for final version) maybe in appendice
 \begin{equation}
 \begin{cases}
@@ -105,7 +105,7 @@ submitted to the homogeneous boundary conditions:
 \end{cases}
 \label{eq:conditions-lim}
 \end{equation}
-Let us now summarize the form of the different matrices $F^e,F^p,\tilde{F}^e$ and $\tilde{F}^p$ in the above equations.
+Let us now summarize the form of the different matrices $F^e,F^p,\tilde{F}^e$ and $\tilde{F}^p$ of the above equations.
 \begin{equation}
 F^e = \begin{bmatrix}
 1+f^e_1(x1)&0\\0&1+f^e_2(x2)
@@ -120,7 +120,7 @@ F^e = \begin{bmatrix}
 \frac{c_s}{b}f^p_2(x2)&0\\0&\frac{c_s}{b}f^p_1(x1) 
 \end{bmatrix} 
 \end{equation}
-Let is now focus on the first equation of \ref{eq:2D-PML-strong-timeD}, the functions $f_m$, $f_c$ and $f_k$ depend on the attenuation function and take the form:
+Let us now focus on the first equation of \ref{eq:2D-PML-strong-timeD}, the functions $f_m$, $f_c$ and $f_k$ depend on the attenuation functions:
 \begin{equation}
 \begin{cases}
 f_m = (1+f^e_1(x1))(1+f^e_2(x2))\\
@@ -128,23 +128,24 @@ f_c = (1+f^e_1(x1))f^p_2(x2) + (1+f^e_2(x2))f^p_1(x1)\\
 f_k = f^p_1(x_1)f^p_2(x_2)
 \end{cases}
 \end{equation}
-The next elements to define, which appear in the first and the third equations of \ref{eq:2D-PML-strong-timeD} is the integral of the stress and the strain.
+The next elements to define, which appear in the first and the third equations of \ref{eq:2D-PML-strong-timeD} are the integral of the stress and the strain.
 \begin{equation}
 \doubleunderline{\Sigma} = \int^t_0 \doubleunderline{\sigma} dt, \doubleunderline{E} = \int^t_0 \doubleunderline{\epsilon} dt
 \end{equation} 
 \subsection{Displacement-based weak form}
-Let us introduce the test function $\underline{v}$ belonging to an admisible space of solution $V$. Premultiplying the first equation of the strong form of the equation of motion within the PML \ref{eq:2D-PML-strong-timeD} by $\underline{v}$ and integrating over the PML domain gives :
+Let us introduce the test function $\underline{v}$ belonging to an admissible space of solution $V$. Premultiplying the first equation of the strong form \ref{eq:2D-PML-strong-timeD} by $\underline{v}$ and integrating over the PML domain gives :
 \begin{align}
 \int_{\Omega_{PML}} \underline{v}.div(\doubleunderline{\sigma}\tilde{F}^e + \doubleunderline{\Sigma}\tilde{F}^p) d\Omega_{PML} & = \int_{\Omega_{PML}} \rho f_m \underline{v}.\underline{\ddot{u}} d\Omega_{PML} + ... \nonumber\\
 &  \int_{\Omega_{PML}} \rho \frac{c_s}{b} f_c \underline{v}.\underline{\dot{u}} d\Omega_{PML} +  \int_{\Omega_{PML}} \frac{\mu}{b^2}f_k \underline{v}. \underline{u}  d\Omega_{PML},  \text{In } \Omega_{PML} \times J 
+\label{eq:weak-form-motion}
 \end{align}
-Using Gauss divergence theorem and integration per parts give:
+Using the Gauss divergence theorem and integration per parts gives:
+
 \begin{multline}
 \int_{\Gamma_{PML}} \underline{v} .\left(\doubleunderline{\sigma}\tilde{F}^e + \doubleunderline{\Sigma}\tilde{F}^p \right).\underline{n} d\Gamma_{PML}  = \int_{\Omega_{PML}} \rho f_m \underline{\ddot{u}} . \underline{v} d\Omega_{PML} + ... \nonumber\\
-\int_{\Omega_{PML}} \rho \frac{c_s}{b} f_c \underline{\dot{u}} . \underline{v} d\Omega_{PML} +  \int_{\Omega_{PML}} \frac{\mu}{b^2}f_k \underline{u} . \underline{v} d\Omega_{PML} +\int_{\Omega_{PML}} \doubleunderline{\tilde{\epsilon}}^e : \doubleunderline{\sigma} d\Omega_{PML} + \int_{\Omega_{PML}} \doubleunderline{\tilde{\epsilon}}^p : \doubleunderline{\Sigma} d\Omega_{PML},  \text{In } \Omega_{PML} \times J 
-\label{eq:weak-form-motion}
+\int_{\Omega_{PML}} \rho \frac{c_s}{b} f_c \underline{\dot{u}} . \underline{v} d\Omega_{PML} +  \int_{\Omega_{PML}} \frac{\mu}{b^2}f_k \underline{u} . \underline{v} d\Omega_{PML} +\int_{\Omega_{PML}} \doubleunderline{\tilde{\epsilon}}^e : \doubleunderline{\sigma} d\Omega_{PML} + \int_{\Omega_{PML}} \doubleunderline{\tilde{\epsilon}}^p : \doubleunderline{\Sigma} d\Omega_{PML},  \text{In } \Omega_{PML} \times J
 \end{multline}
-$\underline{n}$ is the normal vector to the boundary of the PML $\Gamma_{PML}$. The tensors $\doubleunderline{\tilde{\epsilon}}^p$ and $\doubleunderline{\tilde{\epsilon}}^e$ depend on the attenuation functions as:
+$\underline{n}$ is the vector normal to the boundary of the PML $\Gamma_{PML}$. The tensors $\doubleunderline{\tilde{\epsilon}}^p$ and $\doubleunderline{\tilde{\epsilon}}^e$ depend on the attenuation functions:
 \begin{equation}
 \begin{cases}
 \doubleunderline{\tilde{\epsilon}}^e = \frac{1}{2}\left(\nabla \underline{v} \tilde{F}^e + \tilde{F}^{eT} \nabla \underline{v}^T  \right) \\
@@ -152,7 +153,7 @@ $\underline{n}$ is the normal vector to the boundary of the PML $\Gamma_{PML}$. 
 \end{cases}
 \label{eq:weak-first-eq}
 \end{equation}
-Using the weak form of the equation of motion within the PML in the temporal domain \ref{eq:weak-form-motion} we can define the mass, damping and stiffness matrices as:
+Using the weak form of the equation of motion within the PML in the temporal domain \ref{eq:weak-form-motion} we can define the mass, damping and stiffness matrices:
 \begin{equation}
 m^{e} = \int_{\Omega_e} \rho f_m N_I N_J d\Omega_e I_d
 \label{eq:2Dpml-elem-mass}
@@ -172,7 +173,7 @@ p^e = \int_{\Omega_{PML}} \doubleunderline{\tilde{\epsilon}}^e : \doubleunderlin
 \end{equation}
 In order to modify this term we need to make a temporal discretization.
 \subsection{Complete discrete form}
-Before discribing the complete discrete equations of two-dimensional PML featuring discretization in space ad time, we need to introduce the following notation. In the following, the hat notation above an element will precise that the tensor is written in Voigt notation. For example $\hat{\sigma} = \begin{pmatrix}
+Before describing the complete discrete equations of two-dimensional PML featuring the discretization in space and time, we need to introduce the following notation. The hat notation above an element will specify that the tensor is written in Voigt notation. For example $\hat{\sigma} = \begin{pmatrix}
 \sigma_{11} \\
 \sigma_{22} \\
 \sigma_{12}
