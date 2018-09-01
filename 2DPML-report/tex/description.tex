@@ -225,8 +225,8 @@ An additional assumption has to be made to evaluate the derivative of the strain
 \begin{equation}
 \dot{\epsilon}_{n+1} = \frac{\epsilon_{n+1}-\epsilon_n}{dt}
 \end{equation} 
-This correspond to the first order approxiation due to Taylor's theorem.
-Using this assumption in the third equation of \ref{eq:2D-PML-strong-timeD} the expression of the strain for the next time step can be obtained.
+This corresponds to the first order approxiation due to Taylor's theorem.
+Using this assumption in the third equation of \ref{eq:2D-PML-strong-timeD}, the expression of the strain for the next time step can be obtained.
 \begin{equation}
 \hat{\epsilon}_{n+1} = \frac{1}{dt}\left(B^\epsilon \dot{U}_{n+1} + B^Q U_{n+1} + \frac{1}{dt} \hat{F}^\epsilon \hat{\epsilon}_n - \hat{F}^Q \hat{E}_n\right)
 \label{eq:strain-n+1}
@@ -255,7 +255,7 @@ and
 \end{bmatrix}
 \end{equation}
 To obtain the relations for $B^Q$ and $\hat{F}^Q$ the only thing to replace is the superscript $\epsilon$ by $Q$. 
-\par The stress $\hat{sigma}_{n+}$ is computed using the second equation of \ref{eq:2D-PML-strong-timeD} involving the elastic constitutive tensor $C$. Thus the internal forces term can be expressed in function of the strain and not the stress.
+\par The stress $\hat{\sigma}_{n+1}$ is computed using the second equation of \ref{eq:2D-PML-strong-timeD} involving the elastic constitutive tensor $C$. Thus the internal forces term can be expressed in function of the strain and not the stress.
 \begin{equation}
 p_{n+1}^e = \int_{\Omega_e} \tilde{B}^{T} D \hat{\epsilon}_{n+1} d\Omega_e + \int_{\Omega_e}\tilde{B}^{pT} \hat{\Sigma}_{n} d\Omega_e
 \end{equation} 
@@ -293,7 +293,7 @@ M\ddot{U}_{n+1} + \left(C+\tilde{C}\right)\dot{U}_{n+1} + \left(K+\tilde{K}\righ
 \end{equation}
 Where $M$,$C$ and $K$ are respectively the mass, damping and stiffness matrices resulting from the assembly of their element matrices \ref{eq:2Dpml-elem-mass}, \ref{eq:2Dpml-elem-damp} and \ref{eq:2Dpml-elem-stiff}. The matrices $\tilde{K}$ and $\tilde{C}$ derive from the assembly procedure of their element matrices \ref{eq:2Dpml-elem-effstiff} and \ref{eq:2Dpml-elem-effdamp}. $P(\hat{\epsilon}_n,\hat{E}_n,\hat{\Sigma}_n)$ is given by the equation \ref{eq:pseudo-intern} and is known at the beginning of the time step since it depends only on components of the previous time. 
 \subsection{Time integration scheme}
-The complete discrete equations obtained in the previous part acn be integrated using the Newmark-$\beta$ scheme. The classical Newmark approximation formulas are expressed in acceleration form:
+The complete discrete equations obtained in the previous part can be integrated using the Newmark-$\beta$ scheme. The classical Newmark approximation formulas are expressed in acceleration form:
 \begin{equation}
 \begin{cases}
 U_{n+1} = U_{n,p} + \beta dt^2 \ddot{U}_{n+1} \\
@@ -305,11 +305,11 @@ where the predictors $U_{n,p}$ and $\dot{U}_{n,p}$ have the form:
 \begin{equation}
 \begin{cases}
 U_{n,p} = U_n + dt \dot{U}_n + dt^2 \left(\frac{1}{2} -\beta  \right)\ddot{U}_n \\
-\dot{U_{n,p}} = \dot{U}_n + dt (1-\gamma)\ddot{U}_n
+\dot{U}_{n,p} = \dot{U}_n + dt (1-\gamma)\ddot{U}_n
 \end{cases}
 \label{eq:newmark2}
 \end{equation}
-Substituing the equations \ref{eq:newmark1} and \ref{eq:newmark2} into the discrete form of the equation of motion \ref{eq:2Dpml-discrete-motion} the acceleration at time $t_{n+1}$ can be obtained.
+Substituting the equations \ref{eq:newmark1} and \ref{eq:newmark2} into the discrete form of the equation of motion \ref{eq:2Dpml-discrete-motion} the acceleration at time $t_{n+1}$ can be obtained.
 \begin{equation}
 \tilde{M}\ddot{U}_{n+1} = F_{ext} - \left(C+\tilde{C}\right)\dot{U}_{n,p} - \left(K+\tilde{K}\right)U_{n,p} - P(\hat{\epsilon}_n,\hat{E}_n,\hat{\Sigma}_n)
 \end{equation}
@@ -317,12 +317,14 @@ where
 \begin{equation}
 \tilde{M} = M + \gamma dt \left(C+\tilde{C}\right) + \beta dt^2 \left(K+\tilde{K}\right)
 \end{equation}
-This matrix need to be inverted, this will be done before beginning the time stepping since all the matrices constituing it remain constant through the time stepping. Two schemes will be used in the following of this report:
+This matrix needs to be inverted, this will be done before beginning the time stepping since all the matrices constituting it remain constant through the time stepping. Two schemes will be used in the following of this report:
 \begin{itemize}
 \item Implicit Newmark scheme: with $\gamma = 1/2$ and $\beta = 1/4$.
 \item Explicit Newmark scheme: with $\gamma = 1/2$ and $\beta = 0$.
 \end{itemize} 
-The properties of each schemes will be investigated in the next section concerning the stability and the last part will highlight the differences in term of performance and accuracy.
+The properties of each scheme will be investigated in the next section concerning the stability and the last part will highlight the differences in term of performance and accuracy.\\
+Let us summarise the different steps in the following algorithm:
+
 
 
 

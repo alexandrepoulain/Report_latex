@@ -11,6 +11,7 @@ The bar test case is composed of two parts and it is mainly summarized by the fi
 This test case corresponds to a simple bar with on the left an elastic medium of a length of $250$ and on the right a PML with a length of $200$. The size of an element is $5$, thus the elastic medium contains $50$ elements whereas the PML $40$. The parameters of the medium are the following and they are the same for the PML.
 \begin{table}[H]
 \centering
+\caption{Material parameters for the elastic medium}
 \begin{tabular}{c|c}
 $\nu$ & $0.24$ \\
 $E$ & $1e07$ \\
@@ -19,12 +20,12 @@ $\rho$ & $1700$ \\
 \end{table} 
 In order to calculate the coefficients of attenuation $a_0$ (for propagating waves) and $b_0$ (for evanescent waves) in both directions, we will use the formulation \ref{eq:alpha_kucu} with the reflection wanted at the end of the PML $R_{pp} = 1e-3$. The order of the attenuation functions is $n = 2$. \\
 \subsubsection{Non-harmonic input wave}
-In the context of the analysis of sismic data, the Ricker wave is often used. It is the normalized negative of the second derivative of a Gaussian function and takes the formulation at the point $x$ ant time $t$:
+In the context of the analysis of seismic data, the Ricker wave is often used. It is the normalized negative of the second derivative of a Gaussian function and takes the formulation at the point $x$ ant time $t$:
 \begin{equation}
 F(x,t) = A \left(2 \pi^2 \frac{(t-t_s)}{t_p^2} -1\right) \exp\left(-\pi^2 \frac{(t-t_s)}{t_p^2}\right)
 \end{equation}   
 With $t_s$ the time shift, $t_p$ the fundamental period and $A$ the amplitude.
-In term of displacement this wave has the following "mexican hat" form:
+In terms of displacement this wave has the following "Mexican hat" form:
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.8]{images/ricker.png}
@@ -33,9 +34,9 @@ In term of displacement this wave has the following "mexican hat" form:
 \end{figure}  
 We will inject this wave at the left extremity of the medium and fix its propagation within the $x$ direction. We will choose the set of parameter $t_p = 3$, $t_s = 3$ and $A = 1e6$ which gives us exactly the wave shown in figure \ref{fig:Ricker}.
 \subsubsection{Analysis of the results}
-We will use the Implicit Newmark scheme as integration scheme. The analysis of the performance will not be reviewed since it is a very simple test case. Therefore a comparison between the results obtained with the Explicit scheme is not needed. Both scheme are able to be accurate and performant on a simple case like the bar test. For more complex case, it will be interresting to compare the scheme and highlights the pros and cons of both schele. For our analysis, a specific attention will be dedicated to the reflexion of the wave due to the interface. The time step used is $dt = 0.025$. For this test case the critical time step is $0.06$.\\ 
+We will use the Implicit Newmark scheme as integration scheme. The analysis of the performance will not be reviewed since it is a very simple test case. Therefore a comparison between the results obtained with the Explicit scheme is not needed. Both schemes are able to be accurate and efficient on a simple case like the bar test. For more complex cases, it will be interesting to compare the scheme and highlights the pros and cons of both schemes. For our analysis, a specific attention will be dedicated to the reflexion of the wave due to the interface. The time step used is $dt = 0.025$. For this test case the critical time step is $0.06$.\\ 
 
-Let us record the displacement of a node placed at the center of the elastic medium in both directions. 
+Let us record the displacement of a node placed at the center of the elastic medium in both directions. On the following figures of displacement, the abscissa is the index of the time step denoted by $n$ and in ordinate we have the displacement along the direction $x$ for the left figures and $y$ for the right figure. 
 \begin{figure}[H]
 \centering
 \begin{minipage}{.5\textwidth}
@@ -49,15 +50,15 @@ Let us record the displacement of a node placed at the center of the elastic med
 \caption{Displacement within the $x$ direction (left) and $y$ direction (right)}
 \label{fig:disp_imp_pml}
 \end{figure} 
-To understand the results shown on the figure \ref{fig:disp_imp_pml}, an explanation step by step of what is happening is necessary:
+To understand the results shown in figure \ref{fig:disp_imp_pml}, an explanation step by step of what is happening is necessary:
 \begin{itemize}
 \item \underline{Time steps: $[0-300]$} The node records the displacement due to the propagation of the wave in the elastic medium.  
-\item \underline{Time steps: $[300-500]$} A very slight reflection can be observed due to the truncation interface. The node records this very small displacement because the reflected wave comes back toward the elastic medium. This wave will bounce back at the left extremity of the medium and will propagate again in direction of the PML.
-\item \underline{Time steps: $[500-1000]$} The reflected wave encounters the truncation interface. On this figure the reflection at the point is negligeable and we can consider that the wave is fully attenuated. 
+\item \underline{Time steps: $[300-500]$} A very slight reflection can be observed due to the truncation interface. The node records this very small displacement because the reflected wave comes back toward the elastic medium. This wave will bounce back at the left extremity of the medium and will propagate again in the direction of the PML.
+\item \underline{Time steps: $[500-1000]$} The reflected wave encounters the truncation interface. On this figure the reflection at the point is negligible and we can consider that the wave is fully attenuated. 
 \end{itemize}
-Of course this reflexion due to the truncation interface is a key element of the simulation since the perfectly matched layer is designed to be able to minimize it. A simple ratio between the maximum of the initially propagated wave and the reflected one gives $0.0081$. Therefore less than $1\%$ of the wave is reflected by the interface.
-Of course taking a smaller value of time step and size of element will decrease this coefficient of reflected wave. We have seen in the stability analysis that the implicit scheme commits an error that evolves with the time step considered.\\
-The analysis of the energy of the system is important since the PML has the faculty of attenuate wave, it has also the power of decaying the energies in the system.
+Of course, this reflexion due to the truncation interface is a key element of the simulation since the perfectly matched layer is designed to be able to minimize it. A simple ratio between the maximum of the initially propagated wave and the reflected one gives $0.0081$. Therefore, less than $1\%$ of the wave is reflected by the interface.
+Of course taking a smaller value of the time step and size of an element will decrease this percentage of the reflected wave. We have seen in the stability analysis that the implicit scheme commits an error that evolves with the time step considered.\\
+The analysis of the energies of the system is important since the PML has the faculty of attenuate waves, it has also the power of decaying the energies in the system.
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.8]{images/simple_test_energies_imp.png}
@@ -68,8 +69,8 @@ The energies starts growing together as the wave enters the medium. Once the wav
 
 \subsection{Lamb's test case}
 \subsubsection{Description}
-The Lamb's test consists in an infinite half space medium and the application of a load, given by a Ricker wave, at the surface. This context can be summarized by the figure \ref{fig:Lamb_test}. The left size disposes of symmetry conditions and the medium is surrounded on the left size and in the depth by a PML. This situation permits to simulate the propagation of sismic waves. The simulation will involves P-, S- and Rayleigh waves which are key waves in the analysis of sismic scenarios. It is known to be a good test to highlight the performance of the PML to attenuate surface waves \cite{Liu2006}. \\
-In this test we choose the same values for the parameters of the elastic medium than in the previous test case. For the PML, we choose a value of the coefficient of reflexion $R_{pp} = 1e-6$ to have a stronger attenuation since surface wave are more complicated to decay. The same parameters for the input Ricker wave are the same than the previous bar test. The elastic medium is a square of length $250$ and the PML have a width of $200$.
+The Lamb's test consists of an infinite half space medium and in the application of a load, given by a Ricker wave, at the surface. This context can be summarized by the figure \ref{fig:Lamb_test}. The left size disposes of symmetry conditions and the medium is surrounded on the left size and in the depth by a PML. This situation permits to simulate the propagation of seismic waves. The simulation will involves P-, S- and Rayleigh waves which are key waves in the analysis of seismic scenarios. It is known to be a good test to highlight the performance of the PML to attenuate surface waves \cite{Liu2006}. \\
+In this test we choose the same values for the parameters of the elastic medium than in the previous test case. For the PML, we choose a value of the coefficient of reflexion $R_{pp} = 1e-6$ to have a stronger attenuation since surface waves are more complicated to decay. The same parameters for the input Ricker wave are used. The elastic medium is a square of length $250$ and the PML have a width of $200$.
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.4]{images/Lamb_test.png}
@@ -78,7 +79,7 @@ In this test we choose the same values for the parameters of the elastic medium 
 \end{figure}    
 
 \subsubsection{Analysis of the results}
-Using the implicit integration scheme we obtain the following results for $4$ specific times:
+Using the implicit integration scheme we obtain the following results for $4$ specific times. For each figure, we represented a 2D view of the medium and the PML like the one in figure \ref{fig:Lamb_test} and the figures are colored by the magnitude of displacement. The color blue stands for a displacement equal to $0$ and red for the maximum displacement.    
 \begin{figure}[H]
 \centering
 \begin{minipage}{.5\textwidth}
@@ -111,12 +112,12 @@ Using the implicit integration scheme we obtain the following results for $4$ sp
 \end{minipage}
 \end{figure} 
 \begin{itemize}
-\item \underline{Figure \ref{fig:Lamb1} :} The wave starts propagating in the elastic medium. The faster wave to propagate is the P-wave which goes in the depth of the soil. 
-\item \underline{Figure \ref{fig:Lamb2} :} The different waves can clearly be seen. The P-wave is near the edge of the PML located at the bottom of the medium of interest. Following the surface, the S-wave propagates toward the PML followed by the Rayleigh waves. On ths figures two of them can be seen and are represented in red because they involve the larger displacement.
-\item \underline{Figure \ref{fig:Lamb3} :} The Rayleigh waves reached the PML and starts to be attenuated. The S- and P-waves are already been attenuated.
+\item \underline{Figure \ref{fig:Lamb1} :} The wave starts propagating in the elastic medium. The faster wave to propagate is the P-wave which goes into the depth of the soil. 
+\item \underline{Figure \ref{fig:Lamb2} :} The different waves can clearly be seen. The P-wave is near the edge of the PML located at the bottom of the medium of interest. Following the surface, the S-wave propagates toward the PML followed by the Rayleigh waves. On this figure, two of them can be seen and are represented in red because they involve the larger displacement.
+\item \underline{Figure \ref{fig:Lamb3} :} The Rayleigh waves reached the PML and start to be attenuated. The S- and P-waves have already been attenuated.
 \item \underline{Figure \ref{fig:Lamb4} :} All waves have been attenuated.
 \end{itemize}
-Let us record the displacement of a node located at the surface of the medium and at $x=100$. The displacement are recorded with both directions.
+Let us record the displacement of a node located at the surface of the medium and at $x=100$. The displacement are recorded along the $2$ directions.
 \begin{figure}[H]
 \centering
 \begin{minipage}{.5\textwidth}
@@ -138,6 +139,6 @@ The power of attenuation of the PML can also be highlighted by the decay of the 
   \caption{Potential, kinetic and total energies}
   \label{fig:Lamb_energy_imp}
 \end{figure}  
-As we can observe on the figure \ref{fig:Lamb_energy_imp}, the energies starts increasing and oscillating associated with the progressive arrival of the different waves. The energies seem to reach an equilibrium when all waves are propagating within the medium. Then the energies start decaying: the waves reached the PML and are attenuated. The energies tend to the value $0$ when $t$ tends to large values. \\  
-In the context of seismic simulation, the analysis of the propagation of the waves can be realised considering the medium infinite since the wave is not reflected at the boundaries of the domain of interest. A careful choice of the parameters of the PML can minimize the reflexion of the wave due to truncation interface. By its tunable ability the PML remains a very good technique to simulate the propagation of waves in infinite medium.\\
+As we can observe on the figure \ref{fig:Lamb_energy_imp}, the energies start increasing and oscillating. Each of these oscillations is associated with the progressive arrival of the different waves. The energies seem to reach an equilibrium when all waves are propagating within the medium. Then the energies start decaying: the waves reached the PML and are attenuated. The energies tend to the value $0$ when $t$ tends to large values. \\  
+In the context of seismic simulation, the analysis of the propagation of the waves can be realised considering the medium infinite since the waves are not reflected at the boundaries of the domain of interest. A careful choice of the parameters of the PML can minimize the reflexion of the wave due to the truncation interface. By its tunable ability the PML is a very good technique to simulate the propagation of waves in infinite medium.\\
 
