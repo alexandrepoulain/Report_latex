@@ -83,10 +83,6 @@ Where $a$ and $b$ correspond to the length and the height of the element.
 For the standard medium element only these parameters will be used. For the PML element we have to add the attenuation and we will consider it constant along the element. We will evaluate the impact of $f_p$ and $f_e$ for different values of attenuation.\\
 We will analyse the stability of two time integration schemes: Newmark implicit which is known to be unconditionally stable for the standard element and Newmark explicit which is known to be conditionally stable. 
 \subsection{Construction of the amplification matrix}
-\subsubsection{Elastic medium}
-\label{sec:constr-amp-st}
-
-\subsubsection{Two-dimensional PML}
 In this version of the construction of the amplification matrix for the numerical scheme related to the two-dimensional perfectly matched layer, the state vectors at time $t_{n+1}$ and $t_n$ will have the following form:
 \begin{equation}
 X_n = \begin{pmatrix}
@@ -235,7 +231,7 @@ To analyse the results for the numerical stability concerning the PML we will re
 \caption{Generic bilinear quadrilateral element}
 \label{fig:4nodes}
 \end{figure}
-The numerical scheme used and the construction of the amplification matrix for this element can be found in the section \ref{sec:constr-amp-st}. 
+The numerical scheme used and the construction of the amplification matrix for this element can be found in \cite{Geradin}: it follows the same steps as the construction presented in the case of the 2D PML. The resulting amplification matrix has a size of $8\times 8$.
 The analysis of the amplification matrix is closely related to the study of the normal modes of deformation of the element. In fact, the eigenvectors of the amplification matrix represent the natural modes and the eigenvalues are the natural frequencies of the deformation associated. For a standard bilinear 4-noded element the natural modes of deformation are represented in the following figure borrowed from \cite{Ling2002}.
 \begin{figure}[H]
 \centering

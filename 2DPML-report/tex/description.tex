@@ -324,6 +324,63 @@ This matrix needs to be inverted, this will be done before beginning the time st
 \end{itemize} 
 The properties of each scheme will be investigated in the next section concerning the stability and the last part will highlight the differences in term of performance and accuracy.\\
 Let us summarise the different steps in the following algorithm:
+\begin{algorithm}
+\caption{PML algorithm}
+\begin{algorithmic} 
+\REQUIRE Calculate global matrices: $M$, $C$, $K$.
+\REQUIRE Calculate: $\tilde{M}^{-1} = \left[ M+ \gamma h C +\beta h^2 K  \right]^{-1}$
+\REQUIRE Calculate constant matrices to update internal forces for PML.
+\WHILE{not end time} 
+\FOR{each element} 
+\STATE $P(\hat{\epsilon}_n,\hat{E}_n,\hat{\Sigma}_n) = \sum_{gp} \tilde{B}^T \frac{D}{dt} \left[\frac{1}{dt}\hat{F}^{\epsilon} \hat{\epsilon} - \hat{F}^Q \hat{E}_n \right] + \tilde{B}^p \hat{\Sigma}_n $
+\ENDFOR
+\STATE Compute the external forces: $F_{ext,n+1}$
+\STATE $u_{n+1,p} \leftarrow u_n + h \Dot{u}_n + h^2(\frac{1}{2}-\beta)\Ddot{u}_n$
+\STATE $\dot{u}_{n+1,p} \leftarrow \dot{u}_n + h (1-\gamma)\Ddot{u}_n$
+\STATE $\Ddot{u}_{n+1} \leftarrow \tilde{M}^{-1} \left( P(\hat{\epsilon}_n,\hat{E}_n,\hat{\Sigma}_n) - C \dot{u}_{n+1,p} - K u_{n+1,p}\right)$
+\STATE $u_{n+1} \leftarrow u_{n+1,p} + h^2 \beta \Ddot{u}_{n+1}$
+\STATE $\dot{u}_{n+1} \leftarrow \dot{u}_{n+1,p}+ h \gamma \Ddot{u}_{n+1}$
+\STATE Update physical quantities: $\epsilon_{n+1}$, $E_{n+1}$, $\sigma_{n+1}$ and $\Sigma_{n+1}$ 
+\STATE $t\leftarrow t+h$
+\ENDWHILE
+
+\end{algorithmic}
+\end{algorithm}
+
+
+%\begin{algorithm}[H]
+% \KwData{Parameters for medium and PML}
+% \KwResult{Wave propagation and absorption}
+% Initialise mass, damping and stiffness matrices for  physical medium and PML \\
+% Initalise displacement, velocity and acceleration vectors to 0 for medium and PML. \\
+% \While{Not end time}{
+%  pu_p^{n+1} \leftarrow u_p^n + h \Dot{u}_p^n + h^2(\frac{1}{2}-\beta)\Ddot{u}^n_p\\
+%  p\dot{u}_p^{n+1} \leftarrow \dot{u}_p^n + h (1-\gamma)\Ddot{u}_p^n \\
+%  \For{each element}{
+%    Find the position of the two quadrature points \\ 
+%    P_{e,int} \leftarrow \frac{c_s}{L_p} E \epsilon^n_e \left(w_1 \frac{f^p(\xi_1)}{(1+f^e(\xi_1)+ \frac{c_s h}{L_p}f^p(\xi_1))} +  w_2 \frac{f^p(\xi_2)}{(1+f^e(\xi_2)+ \frac{c_s h}{L_p}f^p(\xi_2))} \right) \\
+%  }\\
+%  $\Ddot{u}$_p^{n+1} \leftarrow \left[ M_p+ \gamma h C_{p} +\beta h^2 K_p  \right]^{-1}\left( P_{int} - C_p p\dot{u}^{n+1}_p - K_p pu^{n+1}_p\right)\\
+%  u^{n+1}_p \leftarrow pu^{n+1}_p + h^2 \beta \Ddot{u}^{n+1}_p\\
+%  $\dot{u}$^{n+1}_p \leftarrow p\dot{u}^{n+1}_p+ h \gamma \Ddot{u}^{n+1}_p\\
+%  pu_m^{n+1} \leftarrow u_m^n + h \Dot{u}_m^n + h^2(\frac{1}{2}-\beta)\Ddot{u}^n_m\\
+%  p\dot{u}_m^{n+1} \leftarrow \dot{u}_m^n + h (1-\gamma)\Ddot{u}_m^n \\
+%  Compute the external forces applied at extremity of medium: F_{ext} \\
+%  $\Ddot{u}$_m^{n+1} \leftarrow \left[ M_m+ \gamma h C_{m} +\beta h^2 K_m  \right]^{-1} \left( F_ext -  C_m p\dot{u}^{n+1}_m - K_m pu^{n+1}_m \right) \\
+%  Assure the continuity of the displacement at the interface\\
+%  Update displacement, velocity and acceleration for medium and PML\\
+%  \For{each element}{
+%  At each quadrature point
+%  Calculate \epsilon^{n+1} \\
+%  }\\
+%  H^{n+1} \leftarrow H^n + h \epsilon^{n+1}\\
+%  t\leftarrow t+h\\
+% }
+% \caption{Algorithm of the wave propagation from a physical medium toward the PML}
+% \label{algo}
+%\end{algorithm}
+
+
 
 
 
