@@ -1,0 +1,82 @@
+\section{Description}
+\subsection{Propagation des ondes élastiques dans des solides}
+\begin{frame}{Equations}
+\begin{itemize}
+\item \underline{Système d'équations:}
+\begin{equation}
+\begin{cases}
+\sum_{j}\frac{\partial \sigma_{ij}}{\partial x_j} = \rho \frac{\partial^2 u_i}{\partial t^2} \\
+\sigma_{ij} = \sum_{k,l} C_{ijkl} \epsilon_{ij} \\
+\epsilon_{ij} = \frac{1}{2}\left(\frac{\partial u_i}{\partial x_j} + \frac{\partial u_j}{\partial x_i} \right)
+\end{cases}
+\end{equation}
+\item \underline{Coordonnées complexes: $x_i \rightarrow \tilde{x}_i: \mathbb{R} \rightarrow \mathbb{C}$}
+\begin{equation}
+\frac{\partial \tilde{x}_i}{\partial x_i} = \lambda_i(x_i) = 1+f_i^e(x_i)-i \frac{f^p_i(x_i)}{b k_s}
+\end{equation}
+$b$: Longueur caractéristique du problème.\\
+$k_s = \frac{\omega}{c_s}$: nombre d'ondes.\\
+$c_s$: Célérité des ondes de cisaillement.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}{Forme discrète des PML}
+Après:
+\begin{itemize}
+\item Intégration sur le domaine de calcul.
+\item Discrétisation en temps et en espace.
+\end{itemize}
+\begin{equation}
+M \ddot{U}_{n+1} + (C+\tilde{C})\dot{U}_{n+1} + (K+\tilde{K})U_{n+1} + P(\epsilon_n, E_n, \Sigma_n) = F_{ext}
+\end{equation}
+with
+\begin{columns}[T] % align columns
+\begin{column}{.48\textwidth}
+\begin{equation*}
+m^{e} = \int_{\Omega_e} \rho f_m N_I N_J d\Omega_e I_d
+\end{equation*}
+\begin{equation*}
+ c^{e} = \int_{\Omega_e} \rho f_c \frac{c_s}{b} N_I N_J d\Omega_e I_d
+\end{equation*}
+\begin{equation*}
+  k^{e} = \int_{\Omega_e} \frac{\mu}{b^2} f_k N_I N_J d\Omega_e I_d 
+\end{equation*}
+\end{column}%
+\hfill%
+\begin{column}{.48\textwidth}
+\begin{equation*}
+\tilde{c}^{e} = \frac{1}{dt} \int_{\Omega_e} \tilde{B}^T D B^\epsilon d\Omega_e
+\end{equation*}
+\begin{equation*}
+\tilde{k}^{e} = \frac{1}{dt} \int_{\Omega_e} \tilde{B}^T D B^Q d\Omega_e
+\end{equation*}
+
+\end{column}%
+\end{columns}
+
+\end{frame}
+
+
+\begin{frame}{Forme discrète des PML}
+\begin{equation*}
+P^e(\epsilon_n, E_n, \Sigma_n) = \int_{\Omega_e} \tilde{B}^T \frac{D}{dt} \left[\frac{1}{dt}\hat{F}^{\epsilon} \hat{\epsilon} - \hat{F}^Q \hat{E}_n \right] + \tilde{B}^p \hat{\Sigma}_n d\Omega_e
+\end{equation*}
+
+\begin{equation*}
+\begin{cases}
+f_m = (1+f^e_1(x1))(1+f^e_2(x2))\\
+f_c = (1+f^e_1(x1))f^p_2(x2) + (1+f^e_2(x2))f^p_1(x1)\\
+f_k = f^p_1(x_1)f^p_2(x_2)
+\end{cases}
+\end{equation*}
+Integrale de la contrainte et de la tension:
+\begin{equation*}
+\doubleunderline{\Sigma} = \int^t_0 \doubleunderline{\sigma} dt, \doubleunderline{E} = \int^t_0 \doubleunderline{\epsilon} dt
+\end{equation*}
+Fonctions d'atténuation:
+\begin{equation*}
+f^\alpha_x = a_\alpha\left(\frac{x - x_0}{L_p} \right)^n \hspace{1cm} f^\alpha_y = a_\alpha\left(\frac{y - y_0}{L_p} \right)^n
+\end{equation*}
+\end{frame}
+
+

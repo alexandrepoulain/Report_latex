@@ -1,0 +1,64 @@
+\section{Introduction}
+\subsection{Bords absorbants}
+\begin{frame}{Bords absorbants}
+    \begin{itemize}[<+->]
+        \item Méthode communément employée pour résoudre numériquement la propagation d'ondes en milieux infinis.
+        \item Important sujet de recherche pour beaucoup de recherches et d'applications d'ingéniérie
+        \item Ex: Simulation de séismes, structure des sols, géophysique, mesure dans le sous-sol, problème de guidage d'ondes.        \pause
+        \vspace{0.7cm}
+        \item 2 types de méthodes:
+        \begin{itemize}[<+->]
+        \pause
+            \item \underline{Conditions de bords absorbants :} Conditions spécifiques aux bords du modèle.
+        \pause
+            \item \underline{Couches de bords absorbants :} Couche entourant le bord du domaine d'intérêt.
+        \end{itemize}    
+    \end{itemize}
+\end{frame}
+
+\subsection{Couches parfaitement adaptées (PML)}
+\begin{frame}{Couches parfaitement adaptées}
+\pause
+    \begin{itemize}
+        \item \underline{split-field PML:} 
+        \begin{itemize}
+        \pause
+            \item Introduit par Béranger dans le contexte des ondes électromagnétiques
+            \item Prolongé aux ondes élastodynamiques par Hastings.
+            \item Transformation: prolongation analytique de l'équation d'onde dans le domaine complexe.
+            \item Dans ce nouveau domaine, les ondes oscillantes (propagatives) sont remplacées par des ondes dont l'amplitude décroit de manière exponentielle.
+            \item Split-field: séparation des variables en deux composantes parallèle et perpendiculaire dans la PML.
+        \end{itemize}
+    \item \underline{unsplit-field PML:} 
+        \begin{itemize}
+        \pause
+            \item Introduite par Wang dans le contexte de l'élastodynamique (CPML) $\rightarrow$ \textcolor{red}{Complexe} 
+            \pause
+            \item Basu and Chopra \cite{Basu2003}: unsplit-field PML pour l'élastodynamique harmonique dans le temps $\rightarrow$ \textcolor{green}{implémentation éléments finis}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+% Frame d'explication des PML.
+
+
+\begin{frame}{Stabilité des PML dans la littérature}
+\pause
+    \begin{itemize}
+        \item \underline{split-field PML:} 
+        \begin{itemize}
+        \pause
+        	\item Analyse de stablité en utilisant les diagrammes de lenteur (slowness diagrams) et les fronts d'ondes.
+        	\item Définitions de conditions nécessaires et suffisantes pour la stabilité des PML \cite{Becache}. 
+            \item discrétisation en différences finis de premier ordre: souffre d'instabilité pour les milieux anisotropes.
+        \end{itemize}
+    \item \underline{unsplit-field PML:} 
+        \begin{itemize}
+        \pause
+            \item Stabilité prouvée pour l'électromagnetisme (équations de Maxwell).
+            \pause
+            \item Pour les problèmes de propagation d'ondes élastiques: peu d'informations.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+

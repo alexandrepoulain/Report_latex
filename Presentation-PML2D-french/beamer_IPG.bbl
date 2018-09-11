@@ -1,0 +1,22 @@
+\begin{thebibliography}{2}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Basu~U.(2003)]{Basu2003}
+Chopra A.~K. Basu~U.
+\newblock Perfectly matched layers for time-harmonic elastodynamics of
+  unbounded domains: theory and finite-element implementation.
+\newblock \emph{Computational methods in applied mechanics and engineering},
+  192:\penalty0 1337--1375, 2003.
+
+\bibitem[Bécache~E. and .P(2003)]{Becache}
+Fauqueux~S. Bécache~E. and Joly .P.
+\newblock Stability of perfectly matched layers, group velocities and
+  anisotropic waves.
+\newblock \emph{Journal of Computational Physics}, 188\penalty0 (2):\penalty0
+  399--443, 2003.
+
+\end{thebibliography}

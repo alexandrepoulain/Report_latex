@@ -1,0 +1,11 @@
+\beamer@endinputifotherversion {3.36pt}
+\select@language {french}
+\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{Bords absorbants}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{Couches parfaitement adapt\IeC {\'e}es (PML)}{12}{0}{1}
+\beamer@sectionintoc {2}{Formulation}{22}{0}{2}
+\beamer@subsectionintoc {2}{1}{Propagation of Elastic Waves in Solids}{22}{0}{2}
+\beamer@sectionintoc {3}{Stability}{25}{0}{3}
+\beamer@subsectionintoc {3}{1}{Method}{25}{0}{3}
+\beamer@subsectionintoc {3}{2}{Results}{28}{0}{3}
+\beamer@sectionintoc {4}{Implementation within Akantu}{32}{0}{4}
