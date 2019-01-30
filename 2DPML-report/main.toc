@@ -1,10 +1,25 @@
 \select@language {french}
 \contentsline {section}{\numberline {1}Description}{4}{section.1}
-\contentsline {subsection}{\numberline {1.1}One dimensional perfectly matched layer}{4}{subsection.1.1}
-\contentsline {subsubsection}{\numberline {1.1.1}Elastic medium}{4}{subsubsection.1.1.1}
-\contentsline {subsubsection}{\numberline {1.1.2}Strong form of the PML in the frequency domain}{4}{subsubsection.1.1.2}
-\contentsline {subsubsection}{\numberline {1.1.3}Weak form of the PML and finite elements formulation}{6}{subsubsection.1.1.3}
-\contentsline {subsubsection}{\numberline {1.1.4}Temporal discretization}{7}{subsubsection.1.1.4}
-\contentsline {subsection}{\numberline {1.2}Two-dimensional perfectly matched layer}{8}{subsection.1.2}
-\contentsline {subsubsection}{\numberline {1.2.1}Strong form of PML}{8}{subsubsection.1.2.1}
-\contentsline {subsection}{\numberline {1.3}Weak form of 2D PML}{10}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.1}Elastic medium}{4}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Strong form in frequency domain}{4}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}Strong form in time domain}{6}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.4}Displacement-based weak form}{7}{subsection.1.4}
+\contentsline {subsection}{\numberline {1.5}Complete discrete form}{8}{subsection.1.5}
+\contentsline {subsection}{\numberline {1.6}Time integration scheme}{10}{subsection.1.6}
+\contentsline {section}{\numberline {2}Stability of the numerical method}{11}{section.2}
+\contentsline {subsection}{\numberline {2.1}Description}{11}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}Principle}{11}{subsubsection.2.1.1}
+\contentsline {subsubsection}{\numberline {2.1.2}Definitions of the stability criterion}{12}{subsubsection.2.1.2}
+\contentsline {subsubsection}{\numberline {2.1.3}Material parameters and time integration scheme}{12}{subsubsection.2.1.3}
+\contentsline {subsection}{\numberline {2.2}Construction of the amplification matrix}{13}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Stability results}{15}{subsection.2.3}
+\contentsline {subsubsection}{\numberline {2.3.1}Generic bilinear quadrilateral element}{15}{subsubsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.2}PML element}{18}{subsubsection.2.3.2}
+\contentsline {section}{\numberline {3}Numerical results}{24}{section.3}
+\contentsline {subsection}{\numberline {3.1}Bar test case}{24}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Description}{24}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}Non-harmonic input wave}{24}{subsubsection.3.1.2}
+\contentsline {subsubsection}{\numberline {3.1.3}Analysis of the results}{25}{subsubsection.3.1.3}
+\contentsline {subsection}{\numberline {3.2}Lamb's test case}{27}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Description}{27}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Analysis of the results}{28}{subsubsection.3.2.2}

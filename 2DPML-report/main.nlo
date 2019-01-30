@@ -1,10 +1,10 @@
-\nomenclatureentry{a$c_s$@[{$c_s$}]\begingroup S-wave velocity\nomeqref {0}|nompageref}{3}
-\nomenclatureentry{a$E$@[{$E$}]\begingroup Young modulus\nomeqref {0}|nompageref}{3}
-\nomenclatureentry{a$\sigma$@[{$\sigma$}]\begingroup Stress\nomeqref {0}|nompageref}{3}
-\nomenclatureentry{a$\epsilon$@[{$\epsilon$}]\begingroup Strain\nomeqref {0}|nompageref}{3}
-\nomenclatureentry{a$u$,$\Dot{u}$,$\Ddot{u}$@[{$u$,$\Dot{u}$,$\Ddot{u}$}]\begingroup Displacement, velocity and acceleration\nomeqref {0}|nompageref}{3}
-\nomenclatureentry{a$\lambda(x)$@[{$\lambda(x)$}]\begingroup Stretching function\nomeqref {0}|nompageref}{3}
-\nomenclatureentry{a$f^p$, $f^e$@[{$f^p$, $f^e$}]\begingroup Damping functions\nomeqref {0}|nompageref}{3}
-\nomenclatureentry{a$L$,$L_p$@[{$L$,$L_p$}]\begingroup Length of medium, length of PML\nomeqref {0}|nompageref}{3}
-\nomenclatureentry{a$\omega$@[{$\omega$}]\begingroup Frequency of excitation\nomeqref {0}|nompageref}{3}
-\nomenclatureentry{a$L_e$@[{$L_e$}]\begingroup Element length\nomeqref {0}|nompageref}{3}
+\nomenclatureentry{a$c_s$@[{$c_s$}]\begingroup S-wave velocity\nomeqref {0}|nompageref}{5}
+\nomenclatureentry{a$E$@[{$E$}]\begingroup Young modulus\nomeqref {0}|nompageref}{5}
+\nomenclatureentry{a$\sigma$@[{$\sigma$}]\begingroup Stress\nomeqref {0}|nompageref}{5}
+\nomenclatureentry{a$\epsilon$@[{$\epsilon$}]\begingroup Strain\nomeqref {0}|nompageref}{5}
+\nomenclatureentry{a$u$,$\Dot{u}$,$\Ddot{u}$@[{$u$,$\Dot{u}$,$\Ddot{u}$}]\begingroup Displacement, velocity and acceleration\nomeqref {0}|nompageref}{5}
+\nomenclatureentry{a$\lambda(x)$@[{$\lambda(x)$}]\begingroup Stretching function\nomeqref {0}|nompageref}{5}
+\nomenclatureentry{a$f^p$, $f^e$@[{$f^p$, $f^e$}]\begingroup Damping functions\nomeqref {0}|nompageref}{5}
+\nomenclatureentry{a$L$,$L_p$@[{$L$,$L_p$}]\begingroup Length of medium, length of PML\nomeqref {0}|nompageref}{5}
+\nomenclatureentry{a$\omega$@[{$\omega$}]\begingroup Frequency of excitation\nomeqref {0}|nompageref}{5}
+\nomenclatureentry{a$L_e$@[{$L_e$}]\begingroup Element length\nomeqref {0}|nompageref}{5}

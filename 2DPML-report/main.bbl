@@ -35,6 +35,12 @@ Chopra A.~K. Basu~U.
 \newblock {\em International Journal For Numerical Methods in Engineering},
   59:1039--1074, 2004.
 
+\bibitem{Brun2016}
+Michael Brun, Eliass Zafati, Irini Djeran-Maigre, and Florent Prunier.
+\newblock Hybrid asynchronous perfectly matched layer for seismic wave
+  propagation in unbounded domains.
+\newblock {\em Finite Elements in Analysis and Design}, 122:1 -- 15, 2016.
+
 \bibitem{Becache}
 Fauqueux~S. Bécache~E. and Joly .P.
 \newblock Stability of perfectly matched layers, group velocities and
@@ -127,6 +133,19 @@ Kallivokas~L.F. Kucukcoban~S.
 \newblock {\em Computational Methods in Applied Mechanics and Engineering.},
   200:57--76, 2011.
 
+\bibitem{Geradin}
+Géradin M. and Rixen D.
+\newblock {\em Mechanical vibrations: Theory and applications to structural
+  dynamics, second edition}.
+\newblock John Wiley and sons, 1997.
+
+\bibitem{Liu2006}
+Shuo Ma and Pengcheng Liu.
+\newblock Modeling of the perfectly matched layer absorbing boundaries and
+  intrinsic attenuation in explicit finite-element methods.
+\newblock {\em Bulletin of the Seismological Society of America},
+  96(5):1779--1794, 2006.
+
 \bibitem{Meza}
 Papageorgiou~A.S. Meza-Fajardo~K.C.
 \newblock A nonconvolutional, split-field, perfectly matched layer for wave
@@ -173,6 +192,11 @@ Lenti~L. Semblat~JF and Gandomzadeh A.
 \newblock {\em International journal for numerical methods in engineering},
   2010.
 
+\bibitem{Belytschko}
+Belytschko T.
+\newblock {\em Nonlinear finite elements for continua and structures}.
+\newblock Chichester : Wiley, 2013.
+
 \bibitem{Teixeira}
 Chew~W.C. Teixeira~F.L.
 \newblock On causality and dynamic stability of perfectly matched layers for
@@ -196,6 +220,12 @@ Tang~X. Wang~T.
 \newblock Finite-difference modeling of elastic wave propagation: a
   nonsplitting perfectly matched layer approach.
 \newblock {\em Geophysics}, 68(5):1749--1755, 2003.
+
+\bibitem{Ling2002}
+H.~P.~Cherukuri X.~Ling.
+\newblock Stability analysis of an explicit finite element scheme for plane
+  wave motions in elastic solids.
+\newblock {\em Computational Mechanics}, 29:430--440, 2002.
 
 \bibitem{Zeng}
 Liu~Q.H. Zeng~Y.Q., He~J.Q.

@@ -78,45 +78,147 @@
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces PML implementations in time-domain elastodynamics\relax }}{3}{table.caption.3}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{tab:litterature}{{1}{3}{PML implementations in time-domain elastodynamics\relax }{table.caption.3}{}}
-\citation{Basu2003}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Description}{4}{section.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}One dimensional perfectly matched layer}{4}{subsection.1.1}}
-\newlabel{part:describ}{{1.1}{4}{One dimensional perfectly matched layer}{subsection.1.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.1}Elastic medium}{4}{subsubsection.1.1.1}}
-\newlabel{eq:governed_equation}{{1}{4}{Elastic medium}{equation.1.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.2}Strong form of the PML in the frequency domain}{4}{subsubsection.1.1.2}}
-\newlabel{eq:complxcoo}{{2}{4}{Strong form of the PML in the frequency domain}{equation.1.2}{}}
-\newlabel{eq:complxder}{{3}{4}{Strong form of the PML in the frequency domain}{equation.1.3}{}}
-\newlabel{eq:fp}{{4}{4}{Strong form of the PML in the frequency domain}{equation.1.4}{}}
-\newlabel{eq:fe}{{5}{4}{Strong form of the PML in the frequency domain}{equation.1.5}{}}
-\citation{Basu2003}
-\newlabel{eq:motionfreq}{{6}{5}{Strong form of the PML in the frequency domain}{equation.1.6}{}}
-\newlabel{eq:constitutive}{{7}{5}{Strong form of the PML in the frequency domain}{equation.1.7}{}}
-\newlabel{eq:constitutive_time}{{8}{5}{Strong form of the PML in the frequency domain}{equation.1.8}{}}
-\newlabel{eq:constitutive2}{{9}{5}{Strong form of the PML in the frequency domain}{equation.1.9}{}}
-\newlabel{eq:derivpos}{{11}{5}{Strong form of the PML in the frequency domain}{equation.1.11}{}}
-\newlabel{eq:timedomeps}{{12}{5}{Strong form of the PML in the frequency domain}{equation.1.12}{}}
-\newlabel{eq:governed_eq_PML}{{13}{5}{Strong form of the PML in the frequency domain}{equation.1.13}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.3}Weak form of the PML and finite elements formulation}{6}{subsubsection.1.1.3}}
-\newlabel{eq:weak1}{{14}{6}{Weak form of the PML and finite elements formulation}{equation.1.14}{}}
-\newlabel{eq:weak2}{{15}{6}{Weak form of the PML and finite elements formulation}{equation.1.15}{}}
-\newlabel{eq:me}{{24}{7}{Weak form of the PML and finite elements formulation}{equation.1.24}{}}
-\newlabel{eq:ce}{{25}{7}{Weak form of the PML and finite elements formulation}{equation.1.25}{}}
-\newlabel{eq:contP}{{26}{7}{Weak form of the PML and finite elements formulation}{equation.1.26}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.4}Temporal discretization}{7}{subsubsection.1.1.4}}
-\newlabel{eq:eps_tn}{{28}{7}{Temporal discretization}{equation.1.28}{}}
-\newlabel{eq:stress}{{30}{7}{Temporal discretization}{equation.1.30}{}}
 \citation{Basu2004}
-\newlabel{eq:Ke}{{32}{8}{Temporal discretization}{equation.1.32}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Two-dimensional perfectly matched layer}{8}{subsection.1.2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.1}Strong form of PML}{8}{subsubsection.1.2.1}}
-\newlabel{eq:complex-stret-2D}{{35}{8}{Strong form of PML}{equation.1.35}{}}
-\newlabel{eq:attenuation-functions}{{36}{8}{Strong form of PML}{equation.1.36}{}}
-\newlabel{eq:Rpp}{{37}{9}{Strong form of PML}{equation.1.37}{}}
-\newlabel{eq:2D-PML-freq}{{40}{9}{Strong form of PML}{equation.1.40}{}}
-\newlabel{eq:2D-PML-strong-timeD}{{41}{9}{Strong form of PML}{equation.1.41}{}}
-\newlabel{eq:conditions-lim}{{42}{9}{Strong form of PML}{equation.1.42}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Weak form of 2D PML}{10}{subsection.1.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Description}{4}{section.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Elastic medium}{4}{subsection.1.1}}
+\newlabel{eq:2D-motion-elastic}{{1}{4}{Elastic medium}{equation.1.1}{}}
+\newlabel{eq:elastic-sol-p}{{3}{4}{Elastic medium}{equation.1.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Strong form in frequency domain}{4}{subsection.1.2}}
+\newlabel{eq:complex-stret-2D}{{5}{4}{Strong form in frequency domain}{equation.1.5}{}}
+\newlabel{eq:attenuation-functions}{{6}{4}{Strong form in frequency domain}{equation.1.6}{}}
+\newlabel{eq:Rpp}{{7}{5}{Strong form in frequency domain}{equation.1.7}{}}
+\newlabel{eq:alpha_kucu}{{8}{5}{Strong form in frequency domain}{equation.1.8}{}}
+\newlabel{eq:2D-PML-freq}{{10}{5}{Strong form in frequency domain}{equation.1.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Scheme of the propagation of a wave within the elastic medium (on the left) and the PML (on the right)\relax }}{6}{figure.caption.4}}
+\newlabel{fig:scheme-layers}{{1}{6}{Scheme of the propagation of a wave within the elastic medium (on the left) and the PML (on the right)\relax }{figure.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Strong form in time domain}{6}{subsection.1.3}}
+\newlabel{eq:2D-PML-strong-timeD}{{13}{6}{Strong form in time domain}{equation.1.13}{}}
+\newlabel{eq:conditions-lim}{{14}{6}{Strong form in time domain}{equation.1.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Displacement-based weak form}{7}{subsection.1.4}}
+\newlabel{eq:weak-form-motion}{{19}{7}{Displacement-based weak form}{equation.1.19}{}}
+\newlabel{eq:weak-first-eq}{{20}{7}{Displacement-based weak form}{equation.1.20}{}}
+\newlabel{eq:2Dpml-elem-mass}{{21}{7}{Displacement-based weak form}{equation.1.21}{}}
+\newlabel{eq:2Dpml-elem-damp}{{22}{7}{Displacement-based weak form}{equation.1.22}{}}
+\newlabel{eq:2Dpml-elem-stiff}{{23}{7}{Displacement-based weak form}{equation.1.23}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.5}Complete discrete form}{8}{subsection.1.5}}
+\newlabel{eq:intern-forces-discrete}{{25}{8}{Complete discrete form}{equation.1.25}{}}
+\newlabel{eq:strain-n+1}{{32}{8}{Complete discrete form}{equation.1.32}{}}
+\newlabel{eq:pseudo-intern}{{40}{9}{Complete discrete form}{equation.1.40}{}}
+\newlabel{eq:2Dpml-elem-effdamp}{{41}{9}{Complete discrete form}{equation.1.41}{}}
+\newlabel{eq:2Dpml-elem-effstiff}{{42}{9}{Complete discrete form}{equation.1.42}{}}
+\newlabel{eq:2Dpml-discrete-motion}{{44}{9}{Complete discrete form}{equation.1.44}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.6}Time integration scheme}{10}{subsection.1.6}}
+\newlabel{eq:newmark1}{{45}{10}{Time integration scheme}{equation.1.45}{}}
+\newlabel{eq:newmark2}{{46}{10}{Time integration scheme}{equation.1.46}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces PML algorithm\relax }}{10}{algorithm.1}}
+\citation{Geradin}
+\citation{Belytschko}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Stability of the numerical method}{11}{section.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Description}{11}{subsection.2.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}Principle}{11}{subsubsection.2.1.1}}
+\newlabel{eq:nondist-tn1}{{53}{11}{Principle}{equation.2.53}{}}
+\newlabel{eq:dist-tn1}{{54}{11}{Principle}{equation.2.54}{}}
+\newlabel{eq:eig-dist}{{57}{11}{Principle}{equation.2.57}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.2}Definitions of the stability criterion}{12}{subsubsection.2.1.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.3}Material parameters and time integration scheme}{12}{subsubsection.2.1.3}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Material parameters for an element of the elastic medium\relax }}{12}{table.caption.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Construction of the amplification matrix}{13}{subsection.2.2}}
+\newlabel{eq:motion-pmlv2-tn+1}{{66}{13}{Construction of the amplification matrix}{equation.2.66}{}}
+\newlabel{eq:motion-pmlv2-tn}{{67}{13}{Construction of the amplification matrix}{equation.2.67}{}}
+\newlabel{eq:v2-internal-forces}{{68}{13}{Construction of the amplification matrix}{equation.2.68}{}}
+\newlabel{eq:Newmark-relationsV2}{{69}{13}{Construction of the amplification matrix}{equation.2.69}{}}
+\newlabel{eq:Main-relations-V2}{{70}{13}{Construction of the amplification matrix}{equation.2.70}{}}
+\newlabel{eq:2Main-relations-V2}{{71}{13}{Construction of the amplification matrix}{equation.2.71}{}}
+\newlabel{eq:3Main-relations-V2}{{78}{14}{Construction of the amplification matrix}{equation.2.78}{}}
+\newlabel{eq:A}{{82}{14}{Construction of the amplification matrix}{equation.2.82}{}}
+\newlabel{eq:B}{{83}{14}{Construction of the amplification matrix}{equation.2.83}{}}
+\citation{Geradin}
+\citation{Ling2002}
+\citation{Ling2002}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Stability results}{15}{subsection.2.3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1}Generic bilinear quadrilateral element}{15}{subsubsection.2.3.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Generic bilinear quadrilateral element\relax }}{15}{figure.caption.6}}
+\newlabel{fig:4nodes}{{2}{15}{Generic bilinear quadrilateral element\relax }{figure.caption.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Deformation modes corresponding to the eigenmodes on a bilinear quadrilateral element\relax }}{15}{figure.caption.7}}
+\newlabel{fig:def-modes}{{3}{15}{Deformation modes corresponding to the eigenmodes on a bilinear quadrilateral element\relax }{figure.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Eigenvalues of the amplification matrix in complex plane\relax }}{16}{figure.caption.8}}
+\newlabel{fig:eig_med_imp}{{4}{16}{Eigenvalues of the amplification matrix in complex plane\relax }{figure.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Spectral radius of the amplification matrix\relax }}{16}{figure.caption.8}}
+\newlabel{fig:spect_rad_med_imp}{{5}{16}{Spectral radius of the amplification matrix\relax }{figure.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Relative periodicity error\relax }}{16}{figure.caption.9}}
+\newlabel{fig:per_err_med_imp}{{6}{16}{Relative periodicity error\relax }{figure.caption.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Numerical damping ratio\relax }}{16}{figure.caption.9}}
+\newlabel{fig:num_damp_med_imp}{{7}{16}{Numerical damping ratio\relax }{figure.caption.9}{}}
+\citation{Geradin}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Eigenvalues of the amplification matrix in complex plane\relax }}{17}{figure.caption.10}}
+\newlabel{fig:eig_med_exp}{{8}{17}{Eigenvalues of the amplification matrix in complex plane\relax }{figure.caption.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Spectral radius of the amplification matrix\relax }}{17}{figure.caption.10}}
+\newlabel{fig:spect_rad_med_exp_not_zoom}{{9}{17}{Spectral radius of the amplification matrix\relax }{figure.caption.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces radius of the amplification matrix\relax }}{17}{figure.caption.11}}
+\newlabel{fig:spect_rad_med_exp}{{10}{17}{radius of the amplification matrix\relax }{figure.caption.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Relative periodicity error\relax }}{18}{figure.caption.12}}
+\newlabel{fig:rel_per_err_med_exp}{{11}{18}{Relative periodicity error\relax }{figure.caption.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Numerical damping ratio\relax }}{18}{figure.caption.12}}
+\newlabel{fig:num_damp_med_exp}{{12}{18}{Numerical damping ratio\relax }{figure.caption.12}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2}PML element}{18}{subsubsection.2.3.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces eigenvalues in the complex plane\relax }}{19}{figure.caption.13}}
+\newlabel{fig:eig_pml_imp_10}{{13}{19}{eigenvalues in the complex plane\relax }{figure.caption.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Moduli of the eigenvalues\relax }}{19}{figure.caption.13}}
+\newlabel{fig:spect_rad_pml_imp_10}{{14}{19}{Moduli of the eigenvalues\relax }{figure.caption.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces eigenvalues in the complex plane\relax }}{19}{figure.caption.14}}
+\newlabel{fig:eig_pml_imp_100}{{15}{19}{eigenvalues in the complex plane\relax }{figure.caption.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Moduli of the eigenvalues\relax }}{19}{figure.caption.14}}
+\newlabel{fig:spect_rad_pml_imp_100}{{16}{19}{Moduli of the eigenvalues\relax }{figure.caption.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Relative periodicity error\relax }}{20}{figure.caption.15}}
+\newlabel{fig:rel_per_err_pml_imp_10}{{17}{20}{Relative periodicity error\relax }{figure.caption.15}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Numerical damping ratio\relax }}{20}{figure.caption.16}}
+\newlabel{fig:num_damp_pml_imp_10}{{18}{20}{Numerical damping ratio\relax }{figure.caption.16}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Eigenvalues of the amplification matrix in complex plane\relax }}{21}{figure.caption.17}}
+\newlabel{fig:eig_pml_exp_10}{{19}{21}{Eigenvalues of the amplification matrix in complex plane\relax }{figure.caption.17}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Spectral radius\relax }}{21}{figure.caption.17}}
+\newlabel{fig:spect_rad_pml_exp_10}{{20}{21}{Spectral radius\relax }{figure.caption.17}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Eigenvalues of the amplification matrix in complex plane\relax }}{22}{figure.caption.18}}
+\newlabel{fig:eig_pml_exp_100}{{21}{22}{Eigenvalues of the amplification matrix in complex plane\relax }{figure.caption.18}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Spectral radius\relax }}{22}{figure.caption.18}}
+\newlabel{fig:spect_rad_pml_exp_100}{{22}{22}{Spectral radius\relax }{figure.caption.18}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {23}{\ignorespaces Relative periodicity error\relax }}{23}{figure.caption.19}}
+\newlabel{fig:rel_per_err_pml_exp_10}{{23}{23}{Relative periodicity error\relax }{figure.caption.19}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {24}{\ignorespaces Numerical damping ratio\relax }}{23}{figure.caption.19}}
+\newlabel{fig:num_damp_pml_exp_10}{{24}{23}{Numerical damping ratio\relax }{figure.caption.19}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Numerical results}{24}{section.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Bar test case}{24}{subsection.3.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}Description}{24}{subsubsection.3.1.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {25}{\ignorespaces bar with the medium (left) and the PML (right)\relax }}{24}{figure.caption.20}}
+\newlabel{fig:bar}{{25}{24}{bar with the medium (left) and the PML (right)\relax }{figure.caption.20}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Material parameters for the elastic medium\relax }}{24}{table.caption.21}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}Non-harmonic input wave}{24}{subsubsection.3.1.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {26}{\ignorespaces Ricker wave in time domain\relax }}{25}{figure.caption.22}}
+\newlabel{fig:Ricker}{{26}{25}{Ricker wave in time domain\relax }{figure.caption.22}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.3}Analysis of the results}{25}{subsubsection.3.1.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {27}{\ignorespaces Displacement within the $x$ direction (left) and $y$ direction (right)\relax }}{26}{figure.caption.23}}
+\newlabel{fig:disp_imp_pml}{{27}{26}{Displacement within the $x$ direction (left) and $y$ direction (right)\relax }{figure.caption.23}{}}
+\citation{Liu2006}
+\@writefile{lof}{\contentsline {figure}{\numberline {28}{\ignorespaces Potential, kinetic and total energies\relax }}{27}{figure.caption.24}}
+\newlabel{fig:simple_test_en_imp}{{28}{27}{Potential, kinetic and total energies\relax }{figure.caption.24}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Lamb's test case}{27}{subsection.3.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Description}{27}{subsubsection.3.2.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {29}{\ignorespaces Lamb's test\relax }}{28}{figure.caption.25}}
+\newlabel{fig:Lamb_test}{{29}{28}{Lamb's test\relax }{figure.caption.25}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Analysis of the results}{28}{subsubsection.3.2.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {30}{\ignorespaces Time $10$\relax }}{28}{figure.caption.26}}
+\newlabel{fig:Lamb1}{{30}{28}{Time $10$\relax }{figure.caption.26}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {31}{\ignorespaces Time $200$\relax }}{28}{figure.caption.26}}
+\newlabel{fig:Lamb2}{{31}{28}{Time $200$\relax }{figure.caption.26}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {32}{\ignorespaces Time $500$\relax }}{29}{figure.caption.27}}
+\newlabel{fig:Lamb3}{{32}{29}{Time $500$\relax }{figure.caption.27}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {33}{\ignorespaces Time $1000$\relax }}{29}{figure.caption.27}}
+\newlabel{fig:Lamb4}{{33}{29}{Time $1000$\relax }{figure.caption.27}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {34}{\ignorespaces Displacement within the $x$ direction (left) and $y$ direction (right)\relax }}{29}{figure.caption.28}}
+\newlabel{fig:Lamb_disp_imp_pml}{{34}{29}{Displacement within the $x$ direction (left) and $y$ direction (right)\relax }{figure.caption.28}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {35}{\ignorespaces Potential, kinetic and total energies\relax }}{30}{figure.caption.29}}
+\newlabel{fig:Lamb_energy_imp}{{35}{30}{Potential, kinetic and total energies\relax }{figure.caption.29}{}}
+\citation{Brun2016}
+\citation{Basu2008}
 \bibstyle{plain}
 \bibdata{biblio}
 \bibcite{Abarbanel1}{1}
@@ -125,31 +227,36 @@
 \bibcite{Engquist}{4}
 \bibcite{Basu2003}{5}
 \bibcite{Basu2004}{6}
-\bibcite{Becache}{7}
-\bibcite{Becache2}{8}
-\bibcite{ChewLiu}{9}
-\bibcite{Chew}{10}
-\bibcite{Cohen}{11}
-\bibcite{Collino}{12}
-\bibcite{Drossaert2}{13}
-\bibcite{Drossaert1}{14}
-\bibcite{Festa}{15}
-\bibcite{Hu}{16}
-\bibcite{Harari}{17}
-\bibcite{Hastings}{18}
-\bibcite{Berenger}{19}
-\bibcite{Komatitsch}{20}
-\bibcite{Kucukcoban}{21}
-\bibcite{Meza}{22}
-\bibcite{Bettess}{23}
-\bibcite{Liu}{24}
-\bibcite{Qi}{25}
-\bibcite{Ungless}{26}
-\bibcite{Roden}{27}
-\bibcite{Semblat}{28}
-\bibcite{Teixeira}{29}
-\bibcite{Turkel}{30}
-\bibcite{Basu2008}{31}
-\bibcite{Wang}{32}
-\bibcite{Zeng}{33}
-\bibcite{Zhang}{34}
+\bibcite{Brun2016}{7}
+\bibcite{Becache}{8}
+\bibcite{Becache2}{9}
+\bibcite{ChewLiu}{10}
+\bibcite{Chew}{11}
+\bibcite{Cohen}{12}
+\bibcite{Collino}{13}
+\bibcite{Drossaert2}{14}
+\bibcite{Drossaert1}{15}
+\bibcite{Festa}{16}
+\bibcite{Hu}{17}
+\bibcite{Harari}{18}
+\bibcite{Hastings}{19}
+\bibcite{Berenger}{20}
+\bibcite{Komatitsch}{21}
+\bibcite{Kucukcoban}{22}
+\bibcite{Geradin}{23}
+\bibcite{Liu2006}{24}
+\bibcite{Meza}{25}
+\bibcite{Bettess}{26}
+\bibcite{Liu}{27}
+\bibcite{Qi}{28}
+\bibcite{Ungless}{29}
+\bibcite{Roden}{30}
+\bibcite{Semblat}{31}
+\bibcite{Belytschko}{32}
+\bibcite{Teixeira}{33}
+\bibcite{Turkel}{34}
+\bibcite{Basu2008}{35}
+\bibcite{Wang}{36}
+\bibcite{Ling2002}{37}
+\bibcite{Zeng}{38}
+\bibcite{Zhang}{39}
